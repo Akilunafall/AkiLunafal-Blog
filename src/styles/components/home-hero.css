@@ -1,0 +1,540 @@
+html:has(.home-hero) #top-row {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: auto;
+	z-index: 1000;
+	background: transparent;
+}
+
+.home-hero {
+	--home-hero-ink: oklch(1 0 0);
+	--home-hero-surface: oklch(0.075 0 0);
+	--home-hero-border: color-mix(in oklch, var(--home-hero-ink) 32%, transparent);
+	--home-hero-border-soft: color-mix(in oklch, var(--home-hero-ink) 20%, transparent);
+	--home-hero-shadow: color-mix(in oklch, var(--home-hero-surface) 78%, transparent);
+	/* 首屏拼图底层：纯色 page-bg + 发丝榫头缝线，两端颜色全取主题令牌，
+	   所以亮暗切换自动反相，不需要 :root.dark 分支。这一层常驻不淡出，
+	   拼合后的整图直接覆盖在它上面并持续放大，过渡全程底色不变。 */
+	--home-hero-puzzle-line: color-mix(in oklch, var(--deep-text) 13%, transparent);
+	/* 左上标题与右下 contact 都压在纯色底上，统一用正文色 */
+	--home-hero-title-ink: var(--deep-text);
+	--home-hero-contact-ink: var(--deep-text);
+	position: relative;
+	width: 100vw;
+	height: 100svh;
+	min-height: 34rem;
+	margin-right: calc(50% - 50vw);
+	margin-left: calc(50% - 50vw);
+	overflow: clip;
+	isolation: isolate;
+	background: var(--home-hero-surface);
+	color: var(--home-hero-ink);
+	contain: layout paint;
+}
+
+/* 动效脚本接管前先隐藏首屏标题和联系按钮，避免静态 HTML 首帧闪现整段文字。 */
+.home-page--motion-pending .home-hero__identity,
+.home-page--motion-pending .home-hero__contact {
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+/* hero 固定使用自身的近黑舞台（oklch(0.075)）+ 纯白墨水字，不随主题切换：
+   亮色页面里它是全屏对比区，暗色下与页面底色仅差 #0d0d0d→#101010 一档，肉眼无断层；
+   绑定 --page-bg 的旧方案反而把 ink 褪成浅灰，已废弃 */
+
+.home-hero__visual,
+.home-hero__puzzle,
+.home-hero__rain {
+	position: absolute;
+	inset: 0;
+}
+
+/* 首屏拼图底层：纯色底 + 榫头缝线（几何见 utils/home-hero-motion.ts），
+   常驻在影像之下，不参与任何淡出 */
+.home-hero__puzzle {
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.home-hero__puzzle-bg {
+	fill: var(--page-bg);
+}
+
+.home-hero__puzzle-seam {
+	fill: none;
+	stroke: var(--home-hero-puzzle-line);
+	stroke-width: 1;
+	stroke-linecap: round;
+}
+
+.home-hero__visual {
+	z-index: 0;
+	overflow: hidden;
+}
+
+.home-hero__mosaic-frame {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: clamp(1rem, 3vh, 2.75rem);
+	z-index: 1;
+	width: min(90vw, 100rem);
+	/* 布局负责居中，整图的自然比例负责高度；transform 只交给滚动动画。 */
+	margin-inline: auto;
+	transform-origin: 50% 50%;
+	will-change: transform;
+}
+
+.home-hero__mosaic-grid {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.home-hero__mosaic-tile {
+	position: absolute;
+	display: block;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate3d(
+		var(--home-hero-tile-x),
+		var(--home-hero-tile-y),
+		0
+	) rotate(var(--home-hero-tile-rotation)) scale(var(--home-hero-tile-scale));
+	filter: blur(var(--home-hero-tile-blur));
+	will-change: transform, opacity;
+}
+
+.home-hero__mosaic-tile-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-image: var(--home-hero-mosaic-image);
+	background-repeat: no-repeat;
+	background-size: calc(var(--home-hero-mosaic-columns) * 100%) calc(var(--home-hero-mosaic-rows) * 100%);
+	background-position: var(--home-hero-tile-bg-x) var(--home-hero-tile-bg-y);
+}
+
+/* 图片就绪后才渐入，避免滚动时间线初始化时先闪现一帧完整碎片。 */
+.home-hero__mosaic-tile.is-idle-visible .home-hero__mosaic-tile-image {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.home-hero__mosaic-complete {
+	position: relative;
+	z-index: 1;
+	display: block;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.home-hero__mosaic-complete img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.home-hero__rain {
+	z-index: 20;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 240ms ease;
+}
+
+.home-hero__rain.is-active {
+	opacity: 1;
+}
+
+.home-hero__identity {
+	position: absolute;
+	top: 0;
+	left: clamp(2rem, 4.5vw, 5rem);
+	z-index: 3;
+	display: flex;
+	height: 50svh;
+	max-width: calc(100vw - 4rem);
+	flex-direction: column;
+	justify-content: center;
+	margin: 0;
+	will-change: transform, opacity;
+	color: var(--home-hero-title-ink);
+}
+
+.home-hero__filter {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.home-hero__title {
+	margin: 0;
+	font-family: var(--font-sans);
+	font-size: clamp(7.5rem, 10.8vw, 9.5rem);
+	font-weight: 760;
+	line-height: 1.08;
+	letter-spacing: 0;
+	text-wrap: balance;
+	overflow: visible;
+}
+
+/* 左上角字标：canvas 矢量描边动画（见 utils/home-hero-wordmark.ts）。
+   占位文字负责撑出与静态版式一致的盒子并兜底无 JS / 减弱动效场景，
+   挂载后由 canvas 接手；padding 给选择框与闪烁小方块留出画布余量，
+   等值负 margin 把多出来的尺寸从布局里扣掉，视觉位置不变。 */
+.home-hero__wordmark {
+	position: relative;
+	display: inline-block;
+	padding: 4rem 6rem;
+	margin: -4rem -6rem;
+	color: var(--home-hero-title-ink);
+	touch-action: pan-y;
+	user-select: none;
+}
+
+.home-hero__wordmark-canvas {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.home-hero__wordmark.is-mounted .home-hero__wordmark-text {
+	color: transparent;
+}
+
+.home-hero__wordmark.is-mounted .home-hero__wordmark-canvas {
+	opacity: 1;
+}
+
+.home-hero__occupation {
+	margin: var(--space-4) 0 0;
+	color: color-mix(in oklch, var(--home-hero-title-ink) 64%, transparent);
+	font-size: 2rem;
+	font-weight: 500;
+	letter-spacing: 0;
+}
+
+.home-hero__contact {
+	position: absolute;
+	right: clamp(2.5rem, 6vw, 8rem);
+	bottom: clamp(3rem, 8vh, 7rem);
+	z-index: 4;
+	display: flex;
+	width: min(36vw, 38rem);
+	min-height: clamp(11rem, 24vh, 18rem);
+	align-items: flex-end;
+	justify-content: flex-end;
+	text-align: right;
+	will-change: transform, opacity;
+}
+
+.home-hero__contact-link {
+	display: block;
+	margin: 0;
+	color: transparent;
+	font-family: var(--font-sans);
+	font-size: clamp(3.75rem, 6.6vw, 8rem);
+	font-weight: 760;
+	line-height: 0.88;
+	letter-spacing: 0;
+	text-decoration: none;
+}
+
+.home-hero__contact-platform,
+.home-hero__contact-handle {
+	--home-hero-melt-size: 1.1rem;
+	--home-hero-melt-width: 0.6rem;
+	--home-hero-melt-gap: 0.28rem;
+	display: block;
+	padding: 0.08em 0.12em 0.16em;
+	margin: -0.08em -0.12em -0.16em;
+	background-image: repeating-linear-gradient(
+		45deg,
+		var(--home-hero-contact-ink) 0 var(--home-hero-melt-width),
+		transparent var(--home-hero-melt-width) calc(var(--home-hero-melt-width) + var(--home-hero-melt-gap))
+	);
+	background-clip: text;
+	background-size: var(--home-hero-melt-size) var(--home-hero-melt-size);
+	filter: url("#home-hero-gooey");
+	animation: home-hero-melt 1.25s linear infinite;
+}
+
+.home-hero__contact-platform {
+	font-size: 0.48em;
+	line-height: 1;
+}
+
+.home-hero__contact-handle {
+	white-space: nowrap;
+}
+
+.home-hero__contact-link[href]:hover,
+.home-hero__contact-link[href]:focus-visible {
+	filter: brightness(0.82);
+}
+
+.home-hero__contact-link[href]:focus-visible {
+	outline: 2px solid var(--home-hero-contact-ink);
+	outline-offset: 0.5rem;
+}
+
+.home-hero__quick-panel {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 6;
+	width: min(26rem, calc(100vw - 2rem));
+	max-width: none;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+}
+
+.home-hero__quick-actions {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-3);
+}
+
+.home-hero__quick-action {
+	display: inline-flex;
+	min-width: min(24rem, calc(100vw - 3rem));
+	min-height: 4rem;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-2);
+	padding: var(--space-3) var(--space-5);
+	border: 0;
+	border-radius: 1.5rem 1.5rem 0.35rem 1.5rem;
+	background: color-mix(in oklch, var(--home-hero-surface) 52%, transparent);
+	backdrop-filter: blur(8px);
+	color: var(--home-hero-ink);
+	font: inherit;
+	font-size: 1.2rem;
+	font-weight: 650;
+	letter-spacing: 0;
+	line-height: 1.2;
+	text-decoration: none;
+	cursor: pointer;
+	pointer-events: auto;
+	opacity: 0;
+	visibility: hidden;
+	will-change: transform, opacity;
+	transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.home-hero__quick-action svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	flex: 0 0 auto;
+}
+
+.home-hero__quick-action:hover,
+.home-hero__quick-action:focus-visible {
+	background: color-mix(in oklch, var(--home-hero-ink) 18%, transparent);
+	color: var(--home-hero-ink);
+	transform: translateY(-2px);
+}
+
+.home-hero__quick-action:focus-visible,
+.home-hero__dialogue-restore:focus-visible {
+	outline: 2px solid var(--home-hero-ink);
+	outline-offset: 3px;
+}
+
+.home-hero__dialogue-restore {
+	display: none;
+	font-size: 1rem;
+}
+
+.home-hero__dialogue-restore svg {
+	width: 1rem;
+	height: 1rem;
+	flex: 0 0 auto;
+}
+
+.home-hero[data-layer-active="true"] .home-hero__dialogue-restore.is-dialogue-closed {
+	display: inline-flex;
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+}
+
+@keyframes home-hero-melt {
+	to {
+		background-position: var(--home-hero-melt-size) 0;
+	}
+}
+
+/* 风吹散落文字（Scatter random）：拆字后宿主只负责占位，字符承载渐变与 gooey 效果 */
+.home-hero__contact-platform.home-hero__fly-host,
+.home-hero__contact-handle.home-hero__fly-host {
+	position: relative;
+	color: transparent;
+	background-image: none;
+	filter: none;
+	animation: none;
+}
+
+.home-hero__fly-placeholder {
+	visibility: hidden;
+	pointer-events: none;
+	user-select: none;
+}
+
+.home-hero__fly-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+	pointer-events: none;
+}
+
+.home-hero__fly-char {
+	position: absolute;
+	color: transparent;
+	white-space: nowrap;
+	background-image: repeating-linear-gradient(
+		45deg,
+		var(--home-hero-contact-ink) 0 var(--home-hero-melt-width),
+		transparent var(--home-hero-melt-width) calc(var(--home-hero-melt-width) + var(--home-hero-melt-gap))
+	);
+	background-clip: text;
+	background-size: var(--home-hero-melt-size) var(--home-hero-melt-size);
+	background-position: var(--home-hero-fly-bg-x, 0px) var(--home-hero-fly-bg-y, 0px);
+	filter: url("#home-hero-gooey");
+	animation: home-hero-melt-fly 1.25s linear infinite;
+	will-change: transform, opacity;
+}
+
+@keyframes home-hero-melt-fly {
+	to {
+		background-position: calc(var(--home-hero-fly-bg-x, 0px) + var(--home-hero-melt-size))
+			var(--home-hero-fly-bg-y, 0px);
+	}
+}
+
+@media (max-width: 768px) {
+	.home-hero {
+		height: 100vh;
+		height: 100lvh;
+		min-height: 32rem;
+	}
+
+	.home-hero__mosaic-frame {
+		bottom: max(var(--space-5), 5svh);
+		width: min(86vw, 28rem);
+	}
+
+	.home-hero__mosaic-tile-image {
+		background-image: var(--home-hero-mosaic-image-mobile);
+	}
+
+	.home-hero__identity {
+		left: var(--space-5);
+	}
+
+	.home-hero__identity {
+		top: 0;
+		height: 46svh;
+	}
+
+	.home-hero__identity {
+		max-width: calc(100vw - 2.5rem);
+	}
+
+	.home-hero__title {
+		font-size: 3.5rem;
+	}
+
+	.home-hero__occupation {
+		margin-top: var(--space-3);
+		font-size: 1.25rem;
+	}
+
+	.home-hero__contact {
+		right: 1rem;
+		bottom: 5.25rem;
+		width: min(78vw, 18rem);
+		min-height: 6rem;
+	}
+
+	.home-hero__contact-link {
+		font-size: 2rem;
+	}
+
+	.home-hero__quick-panel {
+		width: calc(100vw - 1rem);
+	}
+
+	.home-hero__quick-actions {
+		gap: var(--space-2);
+	}
+
+	.home-hero__quick-action {
+		min-height: 3rem;
+		min-width: min(22rem, calc(100vw - 2rem));
+		padding-inline: var(--space-4);
+		font-size: 1rem;
+	}
+
+	.home-hero__dialogue-restore {
+		font-size: 0.8125rem;
+	}
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.home-hero {
+		min-height: 32rem;
+	}
+
+	.home-hero__mosaic-frame {
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		will-change: auto;
+	}
+
+	.home-hero__mosaic-grid {
+		display: none;
+	}
+
+	.home-hero__mosaic-complete {
+		height: 100%;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.home-hero__mosaic-complete img {
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.home-hero__quick-action {
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+	}
+
+	.home-hero__rain {
+		display: none;
+	}
+}

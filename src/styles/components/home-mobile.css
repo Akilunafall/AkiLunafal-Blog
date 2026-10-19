@@ -1,0 +1,612 @@
+/* ============================================
+   移动端首页 — HomeMobile（仅 ≤768px 显示）
+   主页主视觉复用桌面 Hero；这里承载适合触控的纵向内容区。
+   ============================================ */
+
+.home-mobile {
+	display: none;
+}
+
+@media (max-width: 768px) {
+	.home-mobile {
+		display: block;
+	}
+
+	/* 导览卡片在手机端由 HomeMobile 的纵向布局承载。 */
+	section.home-data-layer {
+		display: none;
+	}
+}
+
+/* —— 站点信息 —— */
+
+.home-mobile-stats-wrap {
+	position: relative;
+}
+
+.home-mobile-stats {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 0.15rem 0.45rem;
+}
+
+.home-mobile-stat {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.28rem;
+	padding: 0.15rem 0;
+	appearance: none;
+	background: transparent;
+	border: 0;
+	font: inherit;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.home-mobile-stat:active {
+	opacity: 0.55;
+}
+
+.home-mobile-stats__sep {
+	font-size: 0.75rem;
+	color: var(--content-meta);
+	opacity: 0.7;
+}
+
+.home-mobile-stat__value {
+	font-size: 0.8rem;
+	font-weight: 800;
+	color: var(--deep-text);
+	font-variant-numeric: tabular-nums;
+	line-height: 1.2;
+}
+
+.home-mobile-stat__label {
+	font-size: 0.6875rem;
+	letter-spacing: 0;
+	color: var(--content-meta);
+}
+
+/* —— 统计详情弹窗（统计条上方弹出） —— */
+
+.home-mobile-stats-popup {
+	position: absolute;
+	left: 50%;
+	bottom: calc(100% + 0.6rem);
+	z-index: 20;
+	min-width: 11rem;
+	max-width: 15rem;
+	padding: 0.9rem 1.1rem 0.8rem;
+	border: 2px solid var(--deep-text);
+	border-radius: var(--radius-large);
+	background: var(--page-bg);
+	box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+	text-align: center;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	transform: translateX(-50%) translateY(0.5rem) scale(0.92);
+	transform-origin: bottom center;
+	transition:
+		opacity 200ms ease,
+		transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+		visibility 0ms linear 300ms;
+}
+
+.home-mobile-stats-popup.is-open {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transform: translateX(-50%) translateY(0) scale(1);
+	transition:
+		opacity 200ms ease,
+		transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
+		visibility 0ms;
+}
+
+.home-mobile-stats-popup__value {
+	font-size: 1.5rem;
+	font-weight: 900;
+	color: var(--deep-text);
+	font-variant-numeric: tabular-nums;
+	line-height: 1.15;
+}
+
+.home-mobile-stats-popup__label {
+	margin-top: 0.2rem;
+	font-size: 0.6875rem;
+	letter-spacing: 0;
+	color: var(--content-meta);
+}
+
+.home-mobile-stats-popup__detail {
+	margin-top: 0.5rem;
+	padding-top: 0.45rem;
+	border-top: 1px solid var(--line-divider);
+	font-size: 0.6875rem;
+	line-height: 1.6;
+	color: var(--content-meta);
+}
+
+/* ============================================
+   内容区
+   ============================================ */
+
+.home-mobile-content {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 48rem;
+	margin-inline: auto;
+	gap: 2.5rem;
+	padding: 1.25rem 1.25rem 7rem;
+}
+
+.home-mobile-section {
+	display: grid;
+	min-width: 0;
+	gap: 1rem;
+}
+
+/* —— 分区标题：行标签 + 英文大字 + 线条 —— */
+
+.home-mobile-head {
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+	margin-top: 1rem;
+}
+
+.home-mobile-head__row {
+	display: flex;
+	align-items: baseline;
+	gap: 0.7rem;
+	font-size: 0.95rem;
+	font-weight: 900;
+	letter-spacing: 0;
+	color: var(--deep-text);
+}
+
+.home-mobile-head__index {
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0;
+	color: var(--content-meta);
+}
+
+.home-mobile-head__en-mask {
+	display: block;
+	overflow: hidden;
+}
+
+.home-mobile-head__en {
+	display: block;
+	font-size: 2.6rem;
+	font-weight: 900;
+	line-height: 1.08;
+	letter-spacing: 0;
+	text-transform: uppercase;
+	color: var(--deep-text);
+}
+
+.home-mobile-head__rule {
+	display: block;
+	height: 2px;
+	background: var(--deep-text);
+	transform-origin: left center;
+}
+
+.home-mobile-empty {
+	padding: 1.5rem 0;
+	font-size: 0.8rem;
+	color: var(--content-meta);
+	text-align: center;
+}
+
+.home-mobile-subhead {
+	margin: 0;
+	font-size: 0.875rem;
+	font-weight: 800;
+	line-height: 1.45;
+	color: var(--deep-text);
+}
+
+/* —— 站点统计 —— */
+
+.home-mobile-stats-wrap {
+	position: relative;
+}
+
+.home-mobile-stats {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.55rem;
+}
+
+.home-mobile-stat {
+	width: 100%;
+	min-width: 0;
+	min-height: 3.75rem;
+	justify-content: space-between;
+	gap: 0.5rem;
+	padding: 0.7rem 0.75rem;
+	border: 1px solid var(--line-divider);
+	border-radius: 6px;
+	background: color-mix(in srgb, var(--deep-text) 3%, var(--page-bg));
+	text-align: left;
+}
+
+.home-mobile-stat__value {
+	font-size: 0.95rem;
+}
+
+.home-mobile-stat__label {
+	max-width: 6rem;
+	text-align: right;
+}
+
+/* —— 文章列表 —— */
+
+.home-mobile-post-group {
+	display: grid;
+	gap: 0.35rem;
+}
+
+.home-mobile-post-list,
+.home-mobile-links {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.home-mobile-post + .home-mobile-post {
+	border-top: 1px solid var(--line-divider);
+}
+
+.home-mobile-post__link {
+	display: grid;
+	grid-template-columns: minmax(5rem, 5.5rem) minmax(0, 1fr);
+	align-items: center;
+	gap: 0.85rem;
+	min-width: 0;
+	padding: 0.75rem 0;
+	color: var(--deep-text);
+	text-decoration: none;
+}
+
+.home-mobile-post__cover {
+	display: block;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	border-radius: 5px;
+	object-fit: cover;
+}
+
+.home-mobile-post__cover--empty {
+	background: color-mix(in srgb, var(--deep-text) 8%, var(--page-bg));
+}
+
+.home-mobile-post__body {
+	display: grid;
+	min-width: 0;
+	gap: 0.35rem;
+}
+
+.home-mobile-post__title {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	font-size: 0.9rem;
+	font-weight: 750;
+	line-height: 1.5;
+	overflow-wrap: anywhere;
+}
+
+.home-mobile-post__meta {
+	font-size: 0.6875rem;
+	line-height: 1.45;
+	color: var(--content-meta);
+}
+
+/* —— 分类与标签索引 —— */
+
+.home-mobile-index {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.home-mobile-index__group {
+	display: grid;
+	align-content: start;
+	min-width: 0;
+	gap: 0.35rem;
+}
+
+.home-mobile-index__list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.home-mobile-index__list li + li {
+	border-top: 1px solid var(--line-divider);
+}
+
+.home-mobile-index__list a {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 0.4rem;
+	min-width: 0;
+	padding: 0.55rem 0;
+	font-size: 0.75rem;
+	line-height: 1.45;
+	color: var(--deep-text);
+	text-decoration: none;
+}
+
+.home-mobile-index__list a span:first-child {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.home-mobile-index__list a span:last-child {
+	flex-shrink: 0;
+	color: var(--content-meta);
+}
+
+.home-mobile-index__list a.home-mobile-index__all {
+	font-weight: 750;
+}
+
+/* —— 联系方式 —— */
+
+.home-mobile-links {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.55rem;
+}
+
+.home-mobile-links a {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	min-width: 0;
+	min-height: 2.9rem;
+	padding: 0.65rem 0.75rem;
+	border: 1px solid var(--line-divider);
+	border-radius: 6px;
+	color: var(--deep-text);
+	font-size: 0.8125rem;
+	line-height: 1.35;
+	text-decoration: none;
+}
+
+.home-mobile-links svg {
+	flex-shrink: 0;
+	font-size: 1.1rem;
+}
+
+.home-mobile-links a span {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+/* —— 首页影像故事 —— */
+
+.home-mobile-story-intro {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.45rem;
+	font-size: 0.75rem;
+	line-height: 1.45;
+	color: var(--content-meta);
+}
+
+.home-mobile-story-intro strong,
+.home-mobile-story-intro span {
+	padding: 0.35rem 0.55rem;
+	border: 1px solid var(--line-divider);
+	border-radius: 5px;
+}
+
+.home-mobile-story-intro strong {
+	color: var(--deep-text);
+}
+
+.home-mobile-stories {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.75rem;
+}
+
+.home-mobile-story {
+	min-width: 0;
+	overflow: hidden;
+	border: 1px solid var(--line-divider);
+	border-radius: 6px;
+	background: color-mix(in srgb, var(--deep-text) 3%, var(--page-bg));
+}
+
+.home-mobile-story img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
+
+.home-mobile-story__body {
+	display: grid;
+	gap: 0.4rem;
+	padding: 0.7rem;
+}
+
+.home-mobile-story__heading {
+	display: grid;
+	gap: 0.2rem;
+}
+
+.home-mobile-story__heading h3 {
+	margin: 0;
+	font-size: 0.875rem;
+	line-height: 1.4;
+	color: var(--deep-text);
+}
+
+.home-mobile-story__heading time,
+.home-mobile-story__body p {
+	margin: 0;
+	font-size: 0.6875rem;
+	line-height: 1.55;
+	color: var(--content-meta);
+}
+
+/* —— 置顶文章：堆叠卡片 —— */
+
+.home-mobile-deck {
+	position: relative;
+	height: 14rem;
+	/* 堆叠卡逐层下探 1rem，为最底层卡预留透出空间 */
+	margin-bottom: 1.9rem;
+	-webkit-user-select: none;
+	user-select: none;
+	-webkit-touch-callout: none;
+}
+
+/* 外壳：仅负责堆叠定位（z 轴 + 层叠位移），滚动视差也作用于此 */
+.home-mobile-deck__card {
+	position: absolute;
+	inset: 0;
+	z-index: calc(10 - var(--deck-index, 0));
+	transform: translateY(calc(var(--deck-index, 0) * 1rem))
+		scale(calc(1 - var(--deck-index, 0) * 0.05));
+	transform-origin: top center;
+	transition:
+		transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+		opacity 260ms ease;
+}
+
+/* 内层：视觉卡片 + 入场动画载体 */
+.home-mobile-deck__card-inner {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	height: 100%;
+	padding: 1.1rem 1.2rem;
+	border: 2px solid var(--deep-text);
+	border-radius: var(--radius-large);
+	background: var(--page-bg);
+	box-sizing: border-box;
+}
+
+.home-mobile-deck__card-inner::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		180deg,
+		transparent 25%,
+		color-mix(in srgb, var(--page-bg) 92%, transparent) 100%
+	);
+	pointer-events: none;
+}
+
+.home-mobile-deck__cover {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.home-mobile-deck__cover--empty {
+	background: color-mix(in srgb, var(--deep-text) 8%, var(--page-bg));
+}
+
+/* 翻页循环态：顶部卡 z 轴沉底，沿堆叠路径向下滑入底层（传送带循环） */
+.home-mobile-deck__card.is-cycling {
+	z-index: 1;
+	pointer-events: none;
+}
+
+.home-mobile-deck__meta {
+	position: relative;
+	z-index: 1;
+	margin-top: auto;
+	font-size: 0.6875rem;
+	letter-spacing: 0;
+	color: var(--content-meta);
+}
+
+.home-mobile-deck__link {
+	position: relative;
+	z-index: 1;
+	font-size: 1.1rem;
+	font-weight: 800;
+	line-height: 1.45;
+	color: var(--deep-text);
+}
+
+.home-mobile-deck__desc {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	font-size: 0.8rem;
+	line-height: 1.6;
+	color: var(--content-meta);
+}
+
+/* ============================================
+   入场动效（.is-anim 由预绘内联脚本添加；
+   reduced-motion / 桌面端 / JS 失败时不添加，内容直接可见）
+   ============================================ */
+
+/* —— 入场初始态（GSAP 接管后动画归位） —— */
+
+.home-mobile.is-anim .home-mobile-head__en {
+	transform: translateY(110%) skewY(4deg);
+}
+
+.home-mobile.is-anim .home-mobile-head__row {
+	opacity: 0;
+	transform: translateX(-22px);
+}
+
+.home-mobile.is-anim .home-mobile-head__rule {
+	transform: scaleX(0);
+}
+
+.home-mobile.is-anim .home-mobile-deck__card-inner {
+	opacity: 0;
+	transform: translateY(90px) scale(0.96);
+}
+
+/* —— 降级动画 —— */
+
+@media (prefers-reduced-motion: reduce) {
+	.home-mobile-deck__card {
+		transition: none;
+	}
+
+	/* 双保险：即便误加 .is-anim 也保证内容可见 */
+
+	.home-mobile.is-anim :is(
+			.home-mobile-head__en,
+			.home-mobile-head__row,
+			.home-mobile-head__rule,
+			.home-mobile-deck__card-inner
+		) {
+		opacity: 1;
+		transform: none;
+		clip-path: none;
+	}
+}

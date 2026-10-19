@@ -1,0 +1,16 @@
+---
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { siteConfig } from "@/config";
+import I18nKey from "@/i18n/i18nKey";
+import { i18n } from "@/i18n/translation";
+
+if (!siteConfig.pages.music) {
+	return Astro.redirect("/404/");
+}
+---
+
+
+<MainGridLayout title={i18n(I18nKey.music)} description="音乐页面暂时关闭，站内播放器仍可使用。" hasOwnH1={true}>
+	<h1 class="sr-only">{i18n(I18nKey.music)}</h1>
+	<p class="py-20 text-center text-lg" role="status">音乐功能暂时关闭，站内播放器仍可正常使用。</p>
+</MainGridLayout>
