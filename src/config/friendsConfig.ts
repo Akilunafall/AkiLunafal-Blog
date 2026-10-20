@@ -19,9 +19,9 @@ export const friendsPageConfig: FriendsPageConfig = {
 	// 本站信息，用于友链申请指南弹窗中的站点信息展示
 	siteInfo: {
 		name: "月华秋凌的Friends",
-		desc: "欢迎泥！",
-		url: "https://tblog.mmzhiku.xyz",
-		avatar: "https://i.stardots.io/784774835/StarDots-2026052116374135506.jpg",
+		desc: "记录学习历程与心得体会，也分享技术实践、兴趣项目和日常生活中的点滴。",
+		url: "https://akilunafall.top",
+		// avatar: "https://i.stardots.io/784774835/StarDots-2026052116374135506.jpg",
 		email: "2830880096@qq.com",
 	},
 
@@ -50,18 +50,18 @@ export const friendsPageConfig: FriendsPageConfig = {
 	chat: [
 		{
 			role: "cat",
-			name: "喵墩",
-			text: "来者何人喵？报上名号，本喵爪子底下可不收无名之辈。",
+			name: "酒狐",
+			text: "来者何人？报上名号，本狐爪子底下可不收无名之辈。",
 		},
 		{
 			role: "owner",
 			name: "站长",
-			text: "哈基墩，不得无礼！！欢迎各位大佬来小破站。",
+			text: "酒狐，不得无礼！！欢迎各位大佬来小破站。",
 		},
 		{
 			role: "cat",
-			name: "喵墩",
-			text: "喵？抱歉喵~第一时间没认出大佬您，里边请，茶水管够，把这儿当自己窝就行喵~",
+			name: "酒狐",
+			text: "?!!抱歉> < 第一时间没认出大佬您，里边请，茶水管够，把这儿当自己窝就行喵~",
 		},
 	],
 };
