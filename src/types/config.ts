@@ -774,7 +774,7 @@ export type FriendSiteInfo = {
 	name: string; // 站点名称
 	desc: string; // 站点描述
 	url: string; // 站点链接
-	avatar: string; // 头像链接
+	avatar?: string; // 头像链接，留空则不展示该行
 	email: string; // 联系邮箱
 };
 

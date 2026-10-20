@@ -7,7 +7,7 @@ const SITE_LANG = "zh_CN";
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
-	title: "Aki Lunafall の blog",
+	title: "月华秋凌的博客",
 
 	// 站点副标题
 	subtitle: "Aki Lunafall",

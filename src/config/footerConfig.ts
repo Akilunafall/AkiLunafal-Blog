@@ -27,20 +27,15 @@ export const footerConfig: FooterConfig = {
 
 	// 备案信息（icp/police 留空则不显示对应条目）
 	beian: {
-		icp: "粤ICP备2026073665号-1",
-		police: "粤公网安备44060602003342号",
-		policeIcon: "/assets/images/备案图标.png",
-		icpUrl: "https://beian.miit.gov.cn/#/Integrated/index",
-		policeUrl: "https://beian.mps.gov.cn/#/query/webSearch?code=44060602003342",
+		icp: "",
+		police: "",
+		policeIcon: "",
+		icpUrl: "",
+		policeUrl: "",
 	},
 
 	// Powered by 信息
 	poweredBy: [
 		{ label: "框架", name: "Astro", href: "https://astro.build" },
-		{
-			label: "主题",
-			name: "Firefly",
-			href: "https://github.com/CuteLeaf/Firefly",
-		},
 	],
 };
