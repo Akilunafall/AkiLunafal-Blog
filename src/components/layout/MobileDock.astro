@@ -62,6 +62,7 @@ const isHomePath = Astro.url.pathname === "/" || Astro.url.pathname === "";
 	id="mobile-dock"
 	data-shape="pill"
 	data-view="menu"
+	data-auto-open={announcementConfig.autoOpen === true ? "true" : "false"}
 	aria-label={i18n(I18nKey.tools)}
 >
 	<div class="mobile-dock__bar">
@@ -949,5 +950,16 @@ const isHomePath = Astro.url.pathname === "/" || Astro.url.pathname === "";
 		updateThemeIcon();
 		updatePathDependent();
 		syncMusicState();
+
+		// 与桌面公告弹窗保持一致：首次整页加载且停在首页时自动展开公告。
+		// 桌面端 MobileDock 被隐藏，不能在这里打开，否则会锁住页面滚动。
+		if (
+			dock.dataset.autoOpen === "true" &&
+			window.matchMedia("(max-width: 768px)").matches &&
+			announcementButton &&
+			!announcementButton.classList.contains("is-hidden")
+		) {
+			openCard("announcement");
+		}
 	})();
 </script>

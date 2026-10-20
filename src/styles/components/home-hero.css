@@ -439,8 +439,10 @@ html:has(.home-hero) #top-row {
 	}
 
 	.home-hero__mosaic-frame {
-		bottom: max(var(--space-5), 5svh);
-		width: min(86vw, 28rem);
+		/* 上移拼图并略微放大：与桌面版「标题在上、拼图铺在中下、署名在右下」的层次一致，
+		   同时给底部署名和 MobileDock 留出净空，避免互相遮挡 */
+		bottom: 30svh;
+		width: min(90vw, 28rem);
 	}
 
 	.home-hero__mosaic-tile-image {

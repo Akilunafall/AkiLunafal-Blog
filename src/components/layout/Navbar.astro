@@ -1151,8 +1151,13 @@ announcementModal?.addEventListener("cancel", (event) => {
 	closeAnnouncementModal(true);
 });
 
-// 首次进入网站时自动展示公告；Swup 站内导航不会重复弹出
-if (announcementModal?.dataset.autoOpen === "true") {
+// 首次进入网站时自动展示公告；Swup 站内导航不会重复弹出。
+// 手机端 #navbar 整块被隐藏，弹窗虽然仍能 showModal，却不可见且会让页面 inert，
+// 所以只在桌面断点执行，手机端由 MobileDock 的公告视图负责。
+if (
+	announcementModal?.dataset.autoOpen === "true" &&
+	window.matchMedia("(min-width: 769px)").matches
+) {
 	openAnnouncementModal();
 }
 

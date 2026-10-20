@@ -691,9 +691,12 @@
 	}
 
 	.home-hero__sticker {
-		bottom: 0.75rem;
+		/* 抬到对话框上方：原先贴底会被整块对话框盖住，只露出头顶。
+		   留 1rem 压边，让人物像是从对话框后探出来；宽度收小，
+		   避免人物整体上移后头顶被视口裁掉 */
+		bottom: calc(100% - 1rem);
 		left: 0;
-		width: min(64vw, 18rem);
+		width: min(54vw, 16rem);
 	}
 }
 
