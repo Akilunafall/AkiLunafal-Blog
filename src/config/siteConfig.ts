@@ -202,9 +202,11 @@ export const siteConfig: SiteConfig = {
 		microsoftClarityId: "",
 		// Umami 统计配置
 		umamiAnalytics: {
-			websiteId: "",
-			shareId: "",
-			scriptUrl: "",
+			websiteId: "e2a7ef14-f53b-42db-9f93-4e5ace1dad5f",
+			shareId: "mf8gLM8scBEixemV",
+			scriptUrl: "https://cloud.umami.is/script.js",
+			// Cloud 版数据接口在 gateway 域名下，与脚本地址不同域
+			apiBase: "https://gateway-us.umami.is",
 			// 使用 Umami 的 PV 展示文章详情、列表与网格浏览量；启用时优先于评论系统统计
 			pageviews: {
 				enabled: true,

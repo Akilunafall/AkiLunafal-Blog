@@ -219,9 +219,9 @@ const primaryContact =
 	) ?? contactLinks[0];
 
 const umamiConfig = siteConfig.analytics?.umamiAnalytics;
-const statsBaseUrl = umamiConfig?.scriptUrl
-	? new URL(umamiConfig.scriptUrl).origin
-	: "";
+const statsBaseUrl =
+	umamiConfig?.apiBase ||
+	(umamiConfig?.scriptUrl ? new URL(umamiConfig.scriptUrl).origin : "");
 const statsShareId = umamiConfig?.shareId ?? "";
 
 /** 卡片外壳：4 张卡共用同一骨架，只有插画、详情与文案不同 */

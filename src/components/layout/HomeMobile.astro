@@ -93,9 +93,9 @@ const contactItems = homeConfig.links.map((link) => ({
 	href: link.url,
 }));
 const umamiConfig = siteConfig.analytics?.umamiAnalytics;
-const statsBaseUrl = umamiConfig?.scriptUrl
-	? new URL(umamiConfig.scriptUrl).origin
-	: "";
+const statsBaseUrl =
+	umamiConfig?.apiBase ||
+	(umamiConfig?.scriptUrl ? new URL(umamiConfig.scriptUrl).origin : "");
 const statsShareId = umamiConfig?.shareId ?? "";
 ---
 

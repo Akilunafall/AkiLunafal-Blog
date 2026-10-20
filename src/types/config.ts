@@ -100,6 +100,7 @@ export type SiteConfig = {
 		umamiAnalytics?: {
 			websiteId?: string; // Umami Website ID
 			shareId?: string; // Umami 分享页 ID，用于客户端直接获取统计
+			apiBase?: string; // Umami API 地址；Cloud 版 API 与脚本不同域时必填
 			scriptUrl?: string; // Umami JS地址，支持使用自建
 			pageviews?: {
 				enabled?: boolean; // 是否使用 Umami 在文章详情和列表中展示页面浏览量

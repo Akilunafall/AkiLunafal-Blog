@@ -21,9 +21,9 @@ const umamiPageviewsEnabled =
 	!!umamiConfig?.pageviews?.enabled &&
 	!!umamiConfig.shareId &&
 	!!umamiConfig.scriptUrl;
-const umamiApiBase = umamiConfig?.scriptUrl
-	? new URL(umamiConfig.scriptUrl).origin
-	: "";
+const umamiApiBase =
+	umamiConfig?.apiBase ||
+	(umamiConfig?.scriptUrl ? new URL(umamiConfig.scriptUrl).origin : "");
 const umamiPageviewPath = path || (id ? getPostUrlBySlug(id) : "");
 
 const visitorConfigMap: Record<

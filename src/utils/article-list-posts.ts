@@ -150,9 +150,11 @@ export function getUmamiPageviews(): UmamiPageviewConfig {
 			!!umamiConfig?.pageviews?.enabled &&
 			!!umamiConfig.shareId &&
 			!!umamiConfig.scriptUrl,
-		apiBase: umamiConfig?.scriptUrl
-			? new URL(umamiConfig.scriptUrl).origin
-			: "",
+		apiBase:
+			umamiConfig?.apiBase ||
+			(umamiConfig?.scriptUrl
+				? new URL(umamiConfig.scriptUrl).origin
+				: ""),
 		shareId: umamiConfig?.shareId || "",
 	};
 }
