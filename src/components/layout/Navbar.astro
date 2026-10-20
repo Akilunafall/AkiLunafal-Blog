@@ -253,6 +253,7 @@ if (isLocalSrcLogo) {
 			aria-label={announcementConfig.title || i18n(I18nKey.announcement)}
 			id="nav-announcement-modal"
 			class="privacy-modal"
+			data-auto-open={announcementConfig.autoOpen === true ? "true" : "false"}
 		>
 			<div class="privacy-overlay" data-nav-announcement-close></div>
 			<div class="privacy-panel">
@@ -1149,6 +1150,11 @@ announcementModal?.addEventListener("cancel", (event) => {
 	event.preventDefault();
 	closeAnnouncementModal(true);
 });
+
+// 首次进入网站时自动展示公告；Swup 站内导航不会重复弹出
+if (announcementModal?.dataset.autoOpen === "true") {
+	openAnnouncementModal();
+}
 
 // Escape：公告弹窗优先，其次工具面板；收起后焦点还给触发器
 document.addEventListener("keydown", (event) => {

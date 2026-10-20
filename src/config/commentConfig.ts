@@ -3,7 +3,7 @@ import type { CommentConfig } from "../types/config";
 
 export const commentConfig: CommentConfig = {
 	// 评论系统类型: none, twikoo, waline, giscus, disqus, artalk，默认为none，即不启用评论系统
-	type: "none",
+	type: "waline",
 
 	//twikoo评论系统配置，版本1.7.4
 	twikoo: {
@@ -17,7 +17,7 @@ export const commentConfig: CommentConfig = {
 	//waline评论系统配置
 	waline: {
 		// waline 后端服务地址
-		serverURL: "",
+		serverURL: "https://comments-rust-pi.vercel.app/",
 		// 设置 Waline 评论系统语言
 		lang: "zh-CN",
 		// 设置 Waline 评论系统表情地址
@@ -49,7 +49,7 @@ export const commentConfig: CommentConfig = {
 	//giscus评论系统配置
 	giscus: {
 		// 设置 Giscus 评论系统仓库
-		repo: "MmzMing/my-blog",
+		repo: "Aki lunafall/my-blog",
 		// 设置 Giscus 评论系统仓库ID
 		repoId: "R_kgDOSXWjBQ",
 		// 设置 Giscus 评论系统分类

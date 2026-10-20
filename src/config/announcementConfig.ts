@@ -17,7 +17,7 @@ export const announcementConfig: AnnouncementConfig = {
 		// 	tag: "优化",
 		// 	title: "稳定性修复一批",
 		// 	content:
-		// 		"统一Swup生命周期（BUG更少了、牺牲了首屏部分性能）、升级astro 7（构建速度翻倍）、文章封面图片加载（更流畅）、更换音乐播放器 API（更稳定）等多个问题，站点更稳了。",
+				// "统一Swup生命周期（BUG更少了、牺牲了首屏部分性能）、升级astro 7（构建速度翻倍）、文章封面图片加载（更流畅）、更换音乐播放器 API（更稳定）等多个问题，站点更稳了。",
 		// 	time: "2026-08-29",
 		// 	sort: 3,
 		// },
@@ -39,8 +39,21 @@ export const announcementConfig: AnnouncementConfig = {
 			link: "/about/",
 			sort: 1,
 		},
+		{
+			tag: "注意",
+			title: "推荐使用电脑端打开此网站",
+			content:
+				"目前对手机端的适配不是很好，好多ui比例失调了> <",
+			time: "2026-10-19",
+			link: "",
+			sort: 3,
+		},
 	],
 
 	// 是否允许用户关闭公告
 	closable: true,
+
+	// 进入网站（整页加载）时自动弹出公告弹窗；设为 false 即关闭该功能。
+	// 站内 Swup 导航不会重复弹出，只在刷新或新开页面时触发
+	autoOpen: true,
 };

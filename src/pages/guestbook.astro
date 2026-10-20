@@ -1,8 +1,10 @@
 ---
+import GuestbookChat from "@components/features/GuestbookChat.svelte";
 import { siteConfig } from "@/config";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import MainGridLayout from "@/layouts/MainGridLayout.astro";
+import "@/styles/components/guestbook-chat.css";
 
 // 检查页面是否启用
 if (!siteConfig.pages.guestbook) {
@@ -17,5 +19,8 @@ const description = i18n(I18nKey.guestbookDescription);
 
 <MainGridLayout title={title} description={description} hasOwnH1={true}>
 	<h1 class="sr-only">{title}</h1>
-	<p class="py-20 text-center text-lg" role="status">留言功能正在开发中...</p>
+	<!-- 留言组件顶层读取 window（移动端断点），无法参与 SSR，只能纯客户端挂载 -->
+	<div class="guestbook-page">
+		<GuestbookChat client:only="svelte" />
+	</div>
 </MainGridLayout>

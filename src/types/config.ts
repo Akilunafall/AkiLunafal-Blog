@@ -565,6 +565,7 @@ export type AnnouncementConfig = {
 	items: AnnouncementItem[]; // 公告列表
 	icon?: string; // 公告栏图标
 	closable?: boolean; // 是否可关闭
+	autoOpen?: boolean; // 首次进入网站时是否自动打开公告弹窗
 };
 
 export type GuestbookAnnouncementItem = {
