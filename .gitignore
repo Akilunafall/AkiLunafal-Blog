@@ -38,3 +38,7 @@ Firefly-docs/
 cache/
 package/
 .obsidian/
+
+# AI instruction files
+AGENTS.md
+CLAUDE.md
