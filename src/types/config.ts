@@ -393,6 +393,8 @@ export type HeroStickerConfig = {
 
 export type HomeConfig = {
 	avatar?: string;
+	/** 导航栏资料卡专属头像；留空则回退为 avatar */
+	profileAvatar?: string;
 	/** 资料卡横幅图；留空则用头像模糊放大兜底。路径约定同 avatar */
 	avatarBanner?: string;
 	name: string;
