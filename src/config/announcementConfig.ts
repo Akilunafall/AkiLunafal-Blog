@@ -46,6 +46,15 @@ export const announcementConfig: AnnouncementConfig = {
 				"目前对手机端的适配不是很好，好多ui比例和功能失调了> <",
 			time: "2026-10-19",
 			link: "",
+			sort: 4,
+		},
+		{
+			tag: "留言",
+			title: "使用留言功能需要打开代理",
+			content:
+				"留言板与文章评论的后端部署在 Vercel，国内网络可能无法直接访问。如果留言列表一直加载失败、或消息发送不出去，请先开启代理再刷新页面。留言内容会公开展示，请勿填写身份证、住址等敏感信息，感谢理解～",
+			time: "2026-10-19",
+			link: "/guestbook/",
 			sort: 3,
 		},
 	],
