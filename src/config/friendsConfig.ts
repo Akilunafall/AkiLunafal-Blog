@@ -21,7 +21,7 @@ export const friendsPageConfig: FriendsPageConfig = {
 		name: "月华秋凌的Friends",
 		desc: "记录学习历程与心得体会，也分享技术实践、兴趣项目和日常生活中的点滴。",
 		url: "https://akilunafall.top",
-		// avatar: "https://i.stardots.io/784774835/StarDots-2026052116374135506.jpg",
+		avatar: "https://akilunafall.top/assets/images/site-avatar.webp",
 		email: "2830880096@qq.com",
 	},
 

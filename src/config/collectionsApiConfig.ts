@@ -474,6 +474,22 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("https://cloud.lilywhite.cc/s/4ZUW?path=%2F&native.theme=1"),
 					enabled: true,
 				},
+				{
+					name: "福建东方同号会",
+					url: "https://koukoustreet.site/",
+					description:
+						"福建东方Project社群活动平台",
+					icon: favicon("https://koukoustreet.site/"),
+					enabled: true,
+				},
+				{
+					name: "锦州冬季THP",
+					url: "https://www.yystouhouhly.icu/",
+					description:
+						"锦州冬季THP官网",
+					icon: favicon("https://www.yystouhouhly.icu/"),
+					enabled: true,
+				},
 			],
 		},
 		// {

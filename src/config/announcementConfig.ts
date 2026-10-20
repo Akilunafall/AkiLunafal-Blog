@@ -43,7 +43,7 @@ export const announcementConfig: AnnouncementConfig = {
 			tag: "注意",
 			title: "推荐使用电脑端打开此网站",
 			content:
-				"目前对手机端的适配不是很好，好多ui比例失调了> <",
+				"目前对手机端的适配不是很好，好多ui比例和功能失调了> <",
 			time: "2026-10-19",
 			link: "",
 			sort: 3,
