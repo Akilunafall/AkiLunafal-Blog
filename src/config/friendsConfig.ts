@@ -18,7 +18,7 @@ export const friendsPageConfig: FriendsPageConfig = {
 
 	// 本站信息，用于友链申请指南弹窗中的站点信息展示
 	siteInfo: {
-		name: "月华秋凌的Friends",
+		name: "Aki's Journey",
 		desc: "记录学习历程与心得体会，也分享技术实践、兴趣项目和日常生活中的点滴。",
 		url: "https://akilunafall.top",
 		avatar: "https://akilunafall.top/assets/images/site-avatar.webp",
@@ -68,17 +68,25 @@ export const friendsPageConfig: FriendsPageConfig = {
 
 // 友链配置
 export const friendsConfig: FriendLink[] = [
-	// {
-	// 	title: "AIOVTUE-雪",
-	// 	imgurl:
-	// 		"https://r2tc.20030327.xyz/file/博客/主题/1780655293662_avatar_me.jpg.PNG",
-	// 	desc: "雨滴会记录生命中的每一个瞬间",
-	// 	siteurl: "https://daily.yybb.us",
-	// 	image: "/assets/images/friends/yybb.webp",
-	// 	tags: ["Blog"],
-	// 	weight: 5,
-	// 	enabled: true,
-	// },
+
+	{
+		title: "夜樱手帐",
+		imgurl: "https://rhsy.moe/images/avatar.jpg",
+		desc: "阿海的博客，拼凑折腾与日常的碎片",
+		siteurl: "https://rhsy.moe/",
+		tags: ["Blog"],
+		weight: 5,
+		enabled: true,
+	},
+	{
+		title: "ttcctctcのblog",
+		imgurl: "https://blog.ttcctctc.top/img/avatar.webp",
+		desc: "随便记点什么",
+		siteurl: "https://blog.ttcctctc.top/",
+		tags: ["Blog"],
+		weight: 5,
+		enabled: true,
+	},
 ];
 
 // 获取启用的友链并进行排序
