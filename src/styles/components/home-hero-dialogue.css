@@ -17,8 +17,9 @@
 
 .home-hero__dialogue-layout {
 	position: relative;
-	height: clamp(14.5rem, 29svh, 18rem);
-	min-height: 0;
+	/* 台词长度不固定：保留原设计的最小高度，超出时由对话框自然撑高，
+	   避免低分辨率设备上长台词被截成省略号 */
+	min-height: clamp(14.5rem, 29svh, 18rem);
 	isolation: isolate;
 }
 
@@ -26,8 +27,8 @@
 	position: relative;
 	z-index: 1;
 	width: 100%;
-	height: 100%;
-	min-height: 0;
+	height: auto;
+	min-height: clamp(14.5rem, 29svh, 18rem);
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
@@ -138,7 +139,7 @@
 	display: grid;
 	min-height: 0;
 	flex: 1 1 auto;
-	grid-template-rows: auto minmax(0, 1fr);
+	grid-template-rows: auto auto;
 	align-content: start;
 	padding-bottom: clamp(0.25rem, 1svh, 0.75rem);
 	cursor: pointer;
@@ -179,16 +180,11 @@
 }
 
 .home-hero__dialogue-text {
-	display: -webkit-box;
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
 	max-width: 52rem;
-	max-height: 2.8em;
 	margin: 0;
-	overflow: hidden;
+	overflow-wrap: anywhere;
 	font-size: clamp(1.45rem, 4svh, 2rem);
 	line-height: 1.4;
-	text-overflow: ellipsis;
 	text-wrap: pretty;
 }
 
@@ -629,13 +625,11 @@
 	}
 
 	.home-hero__dialogue-layout {
-		height: clamp(12rem, 34svh, 15rem);
-		min-height: 0;
+		min-height: clamp(12rem, 34svh, 15rem);
 	}
 
 	.home-hero__dialogue-box {
-		height: 100%;
-		min-height: 0;
+		min-height: clamp(12rem, 34svh, 15rem);
 		padding: clamp(1.25rem, 3svh, 1.75rem) 1.25rem
 			clamp(3.5rem, 6svh, 4.25rem) 1.5rem;
 		background-size: 2.25rem 2.25rem;
@@ -667,7 +661,6 @@
 	}
 
 	.home-hero__dialogue-text {
-		max-height: 2.9em;
 		font-size: clamp(1.125rem, 3.4svh, 1.5rem);
 		line-height: 1.45;
 	}

@@ -473,7 +473,8 @@ html:has(.home-hero) #top-row {
 
 	.home-hero__contact {
 		right: 1rem;
-		bottom: 5.25rem;
+		/* 抬高署名，避开底部 MobileDock 与首屏拼图边缘，改善移动端可读性 */
+		bottom: 8.75rem;
 		width: min(78vw, 18rem);
 		min-height: 6rem;
 	}
