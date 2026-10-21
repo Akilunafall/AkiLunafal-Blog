@@ -161,143 +161,127 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 				},
 			],
 		},
-		
-		// {
-		// 	category: "AI工具网站",
-		// 	description: "模型排行、图像生成、提示词优化与开发平台",
-		// 	items: [
-		// 		{
-		// 			name: "能力排行榜 | Artificial Analysis",
-		// 			url: "https://artificialanalysis.ai/?intelligence-category=reasoning-vs-non-reasoning",
-		// 			description:
-		// 				"AI 模型推理能力对比分析平台，帮助理解不同模型的性能差异。",
-		// 			icon: favicon("artificialanalysis.ai"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "能力排行榜 | AI Arena",
-		// 			url: "https://arena.ai/leaderboard",
-		// 			description: "AI 模型竞技排行榜，综合对比各大语言模型的能力表现。",
-		// 			icon: favicon("arena.ai"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "ModelScope 魔搭社区",
-		// 			url: "https://www.modelscope.cn/",
-		// 			description: "阿里达摩院开源模型社区，提供丰富的 AI 模型与推理服务。",
-		// 			icon: favicon("modelscope.cn"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "skill市场 | Skills Marketplace",
-		// 			url: "https://skillsmp.com/",
-		// 			description: "AI 技能市场，发现和分享各类 AI 工具与自动化工作流。",
-		// 			icon: favicon("skillsmp.com"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "提示词优化 | PromptPilot",
-		// 			url: "https://promptpilot.volcengine.com/",
-		// 			description:
-		// 				"火山引擎推出的 Prompt 优化工具，帮助提升大模型输出质量。",
-		// 			icon: favicon("volcengine.com"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "资源站 | ACGN AI 资源站",
-		// 			url: "https://res.acgnai.top/",
-		// 			description:
-		// 				"ACGN 方向的 AI 资源聚合平台，提供模型下载、工具推荐与教程。",
-		// 			icon: favicon("acgnai.top"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "图像生成 | Oblivion Image Gallery",
-		// 			url: "https://image.oblivionis.net/gallery",
-		// 			description:
-		// 				"免费的GPT AI 生成图像画廊，展示高质量的人工智能艺术作品。",
-		// 			icon: favicon("oblivionis.net"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "设计工具 | Figma",
-		// 			url: "https://www.figma.com/",
-		// 			description: "在线 UI/UX 设计协作工具，支持团队协作与 AI 辅助设计。",
-		// 			icon: favicon("figma.com"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "设计工具 | Google AI Studio",
-		// 			url: "https://aistudio.google.com/",
-		// 			description:
-		// 				"Google 官方 AI 开发平台，支持 Chat/Build/Stream 三模式，可快速原型化 Gemini 应用。",
-		// 			icon: favicon("aistudio.google.com"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "设计工具 | Google Stitch",
-		// 			url: "https://stitch.withgoogle.com/",
-		// 			description:
-		// 				"Google Labs 推出的 AI 原生 UI 设计工具，用文字或图片生成界面并导出代码。",
-		// 			icon: favicon("withgoogle.com"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "模型部署 | Ollama",
-		// 			url: "https://ollama.com/",
-		// 			description:
-		// 				"本地运行大语言模型的轻量框架，支持一键部署 Llama、Qwen 等开源模型。",
-		// 			icon: favicon("ollama.com"),
-		// 			enabled: true,
-		// 		},
-		// 	],
-		// },
 		{
-			category: "BOT开源框架网站",
-			description: "支持 QQ、Discord 等多平台的聊天机器人框架",
+			category: "Embedded",
+			description: "分享一些嵌入式，硬件相关的网站",
 			items: [
 				{
-					name: "NapCat",
-					url: "https://napneko.github.io/",
-					description: "基于 NTQQ 的 QQ 机器人框架，支持插件扩展与多协议接入。",
-					icon: favicon("napneko.github.io"),
-					enabled: true,
-				},
-				{
-					name: "AstrBot",
-					url: "https://astrbot.app/",
+					name: "Wokwi",
+					url: "https://wokwi.com/",
 					description:
-						"多平台聊天机器人框架，支持 QQ、Discord、Telegram 等主流平台。",
-					icon: favicon("astrbot.app"),
+						"在线microcontroller仿真网站",
+					icon: favicon("https://wokwi.com/"),
 					enabled: true,
 				},
 				{
-					name: "Mai-bot",
-					url: "https://docs.mai-mai.org/",
-					description: "音乐游戏 MaiMai 相关机器人，支持查分、排位等功能。",
-					icon: favicon("mai-mai.org"),
-					enabled: true,
-				},
-				{
-					name: "NoneBot",
-					url: "https://nonebot.dev/docs/",
+					name: "SerialWeb",
+					url: "https://conductance-lab.xyz/SerialWeb/",
 					description:
-						"Python 异步机器人框架，支持多平台适配器与丰富的插件生态。",
-					icon: favicon("nonebot.dev"),
+						"在线串口调试工具，支持下载到本地(想要什么功能自己写.jpg)",
+					icon: favicon("https://conductance-lab.xyz/SerialWeb/"),
 					enabled: true,
 				},
 				{
-					name: "LLBot",
-					url: "https://github.com/LLOneBot/LuckyLilliaBot",
-					description: "基于 NTQQ 的轻量 QQ 机器人框架，支持 OneBot 协议。",
-					icon: favicon("github.com"),
+					name: "Interrupt",
+					url: "https://interrupt.memfault.com/",
+					description:
+						"一个以嵌入式系统为核心的博客社区",
+					icon: favicon("https://interrupt.memfault.com/"),
+					enabled: true,
+				},
+				{
+					name: "Vofa+",
+					url: "https://www.vofa.plus/",
+					description:
+						"可拓展，好用的一个串口调试软件",
+					icon: favicon("https://www.vofa.plus/"),
+					enabled: true,
+				},
+				{
+					name: "OpenMV",
+					url: "https://docs.openmv.io/v5.0.1/openmvcam/tutorial/index.html",
+					description:
+						"OpenMV官方文档",
+					icon: favicon("https://docs.openmv.io/v5.0.1/openmvcam/tutorial/index.html"),
+					enabled: true,
+				},
+				{
+					name: "K230",
+					url: "https://www.kendryte.com/k230_canmv/zh/v1.5/quick_start.html",
+					description:
+						"K230官方文档",
+					icon: favicon("https://www.kendryte.com/k230_canmv/zh/v1.5/quick_start.html"),
+					enabled: true,
+				},
+				{
+					name: "立创商城",
+					url: "https://www.szlcsc.com/",
+					description:
+						"立创商城官网，可以在这里查找元器件的数据手册",
+					icon: favicon("https://www.szlcsc.com/"),
+					enabled: true,
+				},
+				{
+					name: "Digikey",
+					url: "https://www.digikey.cn/",
+					description:
+						"得捷官网，可以在这里查元器件的数据手册",
+					icon: favicon("https://www.digikey.cn/"),
+					enabled: true,
+				},
+				{
+					name: "EPS32",
+					url: "https://documentation.espressif.com/en/home",
+					description:
+						"ESP32官方资源平台",
+					icon: favicon("https://documentation.espressif.com/en/home"),
+					enabled: true,
+				},
+				{
+					name: "STM32",
+					url: "https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html",
+					description:
+						"STM32官方产品中心",
+					icon: favicon("https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html"),
+					enabled: true,
+				},
+				{
+					name: "Arduino",
+					url: "https://docs.arduino.cc/",
+					description:
+						"Arduino官方技术文档",
+					icon: favicon("https://docs.arduino.cc/"),
+					enabled: true,
+				},
+				{
+					name: "Learn-Arduino",
+					url: "https://learn-arduino-red.vercel.app/",
+					description:
+						"面向初学者的arduino交互式入门学习网站",
+					icon: favicon("https://learn-arduino-red.vercel.app/"),
+					enabled: true,
+				},
+				{
+					name: "Platformio",
+					url: "https://platformio.org/",
+					description:
+						"面向多种microcontroller的嵌入式开发工具",
+					icon: favicon("https://platformio.org/"),
+					enabled: true,
+				},
+				{
+					name: "FreeRTOS",
+					url: "https://docs.freertos.org/Documentation/00-Overview",
+					description:
+						"FreeRTOS官方文档",
+					icon: favicon("https://docs.freertos.org/Documentation/00-Overview"),
 					enabled: true,
 				},
 			],
 		},
 		{
 			category: "前端组件库",
-			description: "设计参考与开源 UI、动效组件库",
+			description: "设计参考与开源UI，动效组件库",
 			items: [
 				{
 					name: "One Page Love",
@@ -422,6 +406,49 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 				},
 			],
 		},
+				{
+			category: "BOT开源框架网站",
+			description: "支持QQ、Discord等多平台的聊天机器人框架",
+			items: [
+				{
+					name: "NapCat",
+					url: "https://napneko.github.io/",
+					description: "基于NTQQ的QQ机器人框架，支持插件扩展与多协议接入。",
+					icon: favicon("napneko.github.io"),
+					enabled: true,
+				},
+				{
+					name: "AstrBot",
+					url: "https://astrbot.app/",
+					description:
+						"多平台聊天机器人框架，支持 QQ、Discord、Telegram 等主流平台。",
+					icon: favicon("astrbot.app"),
+					enabled: true,
+				},
+				{
+					name: "Mai-bot",
+					url: "https://docs.mai-mai.org/",
+					description: "音乐游戏 MaiMai 相关机器人，支持查分、排位等功能。",
+					icon: favicon("mai-mai.org"),
+					enabled: true,
+				},
+				{
+					name: "NoneBot",
+					url: "https://nonebot.dev/docs/",
+					description:
+						"Python 异步机器人框架，支持多平台适配器与丰富的插件生态。",
+					icon: favicon("nonebot.dev"),
+					enabled: true,
+				},
+				{
+					name: "LLBot",
+					url: "https://github.com/LLOneBot/LuckyLilliaBot",
+					description: "基于 NTQQ 的轻量 QQ 机器人框架，支持 OneBot 协议。",
+					icon: favicon("github.com"),
+					enabled: true,
+				},
+			],
+		},
 		{
 			category: "Touhou",
 			description: "车万相关",
@@ -492,112 +519,5 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 				},
 			],
 		},
-		// {
-		// 	category: "一些知识库",
-		// 	description: "编程学习、算法练习与求职备考平台",
-		// 	items: [
-		// 		{
-		// 			name: "Java 全栈知识体系",
-		// 			url: "https://pdai.tech/",
-		// 			description:
-		// 				"涵盖 Java 核心、并发、JVM、框架、数据库与架构的全栈知识体系。",
-		// 			icon: favicon("pdai.tech"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "JavaGuide",
-		// 			url: "https://javaguide.cn/",
-		// 			description:
-		// 				"Java 学习与面试指南，覆盖 Java 基础、集合、并发、JVM 与 Spring 等核心知识。",
-		// 			icon: favicon("javaguide.cn"),
-		// 			enabled: true,
-		// 		},
-		// 		// {
-		// 		// 	name: "异常教程",
-		// 		// 	url: "https://www.exception.site/",
-		// 		// 	description: "提供 JetBrains 系列 IDE 的安装教程与激活资源分享。",
-		// 		// 	icon: favicon("exception.site"),
-		// 		// 	enabled: true,
-		// 		// },
-		// 		{
-		// 			name: "力扣 LeetCode",
-		// 			url: "https://leetcode.cn/",
-		// 			description:
-		// 				"技术成长与算法练习平台，提供海量题库、面试题与编程竞赛。",
-		// 			icon: favicon("leetcode.cn"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "牛客网",
-		// 			url: "https://www.nowcoder.com/",
-		// 			description:
-		// 				"IT 求职备考与技术学习平台，提供笔试、面试题库与在线编程练习。",
-		// 			icon: favicon("nowcoder.com"),
-		// 			enabled: true,
-		// 		},
-		// 	],
-		// },
-		// {
-		// 	category: "二次元资源站",
-		// 	description: "动漫与漫画资源聚合观看平台",
-		// 	items: [
-		// 		{
-		// 			name: "AGE 动漫",
-		// 			url: "https://www.agedm.io/update",
-		// 			description: "免费动漫资源聚合站，提供高清动漫在线观看与更新推送。",
-		// 			icon: favicon("agedm.io"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "ManhwaTop",
-		// 			url: "https://manhwatop.com/",
-		// 			description: "韩漫与漫画阅读平台，收录热门连载与完结漫画资源。",
-		// 			icon: favicon("manhwatop.com"),
-		// 			enabled: true,
-		// 		},
-		// 	],
-		// },
-		// {
-		// 	category: "API 接口",
-		// 	description: "免费与开放的数据 API 服务平台",
-		// 	items: [
-		// 		{
-		// 			name: "小小API",
-		// 			url: "https://xxapi.cn/",
-		// 			description: "免费 API 数据接口调用平台，提供多种聚合数据接口服务。",
-		// 			icon: favicon("xxapi.cn"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "高德地图API",
-		// 			url: "https://lbs.amap.com/",
-		// 			description: "高德地图开放平台，提供地图、定位、导航等地理信息服务。",
-		// 			icon: favicon("amap.com"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "聚合数据",
-		// 			url: "https://www.juhe.cn/",
-		// 			description:
-		// 				"国内数据服务平台，提供短信、物流、新闻等多种 API 接口。",
-		// 			icon: favicon("juhe.cn"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "有道翻译API",
-		// 			url: "https://ai.youdao.com/",
-		// 			description: "网易有道提供的翻译 API 服务，支持多语言文本互译。",
-		// 			icon: favicon("youdao.com"),
-		// 			enabled: true,
-		// 		},
-		// 		{
-		// 			name: "Tavily",
-		// 			url: "https://app.tavily.com/home",
-		// 			description: "AI 优化的搜索引擎 API，为大模型提供实时网页检索能力。",
-		// 			icon: favicon("tavily.com"),
-		// 			enabled: true,
-		// 		},
-		// 	],
-		// },
 	],
 };
