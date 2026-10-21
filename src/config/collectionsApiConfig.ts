@@ -106,62 +106,6 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 			],
 		},
 		{
-			category: "Tools",
-			description: "一些实用工具",
-			items: [
-				{
-					name: "在线绘图网站",
-					url: "https://app.diagrams.net/",
-					description: "用来给图片做一些标记的时候挺方便的",
-					icon: favicon("https://app.diagrams.net/"),
-					enabled: true,
-				},
-				{
-					name: "图片查找 | SauceNAO",
-					url: "https://saucenao.com/",
-					description: "以图搜图引擎，支持查找动漫插画、同人图等图片来源。",
-					icon: favicon("saucenao.com"),
-					enabled: true,
-				},
-				{
-					name: "网络测速",
-					url: "https://test.ustc.edu.cn/",
-					description:
-						"中科大提供的网络测速工具，用于快速测试本地带宽与网络延迟。",
-					icon: favicon("test.ustc.edu.cn"),
-					enabled: true,
-				},
-				{
-					name: "Online 3D Viewer",
-					url: "https://3dviewer.net/#",
-					description: "看3d打印文件时可以用",
-					icon: favicon("https://3dviewer.net/#"),
-					enabled: true,
-				},
-				{
-					name: "rufes",
-					url: "https://rufus.ie/en/#download",
-					description: "非常好用的一款U盘工具",
-					icon: favicon("https://rufus.ie/en/#download"),
-					enabled: true,
-				},
-				{
-					name: "转换云",
-					url: "https://www.zhuanhuanyun.cn/?to=.zh-warp",
-					description: "在线ncm转换网站",
-					icon: favicon("https://www.zhuanhuanyun.cn/?to=.zh-warp"),
-					enabled: true,
-				},
-				{
-					name: "FreeConvert",
-					url: "https://www.freeconvert.com/zh-CN",
-					description: "支持大多数格式互相转换",
-					icon: favicon("https://www.freeconvert.com/zh-CN"),
-					enabled: true,
-				},
-			],
-		},
-		{
 			category: "Embedded",
 			description: "分享一些嵌入式，硬件相关的网站",
 			items: [
@@ -275,6 +219,62 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					description:
 						"FreeRTOS官方文档",
 					icon: favicon("https://docs.freertos.org/Documentation/00-Overview"),
+					enabled: true,
+				},
+			],
+		},
+		{
+			category: "Tools",
+			description: "一些实用工具",
+			items: [
+				{
+					name: "在线绘图网站",
+					url: "https://app.diagrams.net/",
+					description: "用来给图片做一些标记的时候挺方便的",
+					icon: favicon("https://app.diagrams.net/"),
+					enabled: true,
+				},
+				{
+					name: "图片查找 | SauceNAO",
+					url: "https://saucenao.com/",
+					description: "以图搜图引擎，支持查找动漫插画、同人图等图片来源。",
+					icon: favicon("saucenao.com"),
+					enabled: true,
+				},
+				{
+					name: "网络测速",
+					url: "https://test.ustc.edu.cn/",
+					description:
+						"中科大提供的网络测速工具，用于快速测试本地带宽与网络延迟。",
+					icon: favicon("test.ustc.edu.cn"),
+					enabled: true,
+				},
+				{
+					name: "Online 3D Viewer",
+					url: "https://3dviewer.net/#",
+					description: "看3d打印文件时可以用",
+					icon: favicon("https://3dviewer.net/#"),
+					enabled: true,
+				},
+				{
+					name: "rufes",
+					url: "https://rufus.ie/en/#download",
+					description: "非常好用的一款U盘工具",
+					icon: favicon("https://rufus.ie/en/#download"),
+					enabled: true,
+				},
+				{
+					name: "转换云",
+					url: "https://www.zhuanhuanyun.cn/?to=.zh-warp",
+					description: "在线ncm转换网站",
+					icon: favicon("https://www.zhuanhuanyun.cn/?to=.zh-warp"),
+					enabled: true,
+				},
+				{
+					name: "FreeConvert",
+					url: "https://www.freeconvert.com/zh-CN",
+					description: "支持大多数格式互相转换",
+					icon: favicon("https://www.freeconvert.com/zh-CN"),
 					enabled: true,
 				},
 			],
