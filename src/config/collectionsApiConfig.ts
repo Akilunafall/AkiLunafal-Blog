@@ -11,6 +11,124 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 
 	// API 收藏列表（按 category 分组）
 	apis: [
+			{
+			category: "Embedded",
+			description: "分享一些嵌入式，硬件相关的网站",
+			items: [
+				{
+					name: "Wokwi",
+					url: "https://wokwi.com/",
+					description:
+						"在线microcontroller仿真网站",
+					icon: favicon("wokwi.com/"),
+					enabled: true,
+				},
+				{
+					name: "SerialWeb",
+					url: "https://conductance-lab.xyz/SerialWeb/",
+					description:
+						"在线串口调试工具，支持下载到本地(想要什么功能自己写.jpg)",
+					icon: favicon("conductance-lab.xyz/SerialWeb/"),
+					enabled: true,
+				},
+				{
+					name: "Interrupt",
+					url: "https://interrupt.memfault.com/",
+					description:
+						"一个以嵌入式系统为核心的博客社区",
+					icon: favicon("interrupt.memfault.com/"),
+					enabled: true,
+				},
+				{
+					name: "Vofa+",
+					url: "https://www.vofa.plus/",
+					description:
+						"可拓展，好用的一个串口调试软件",
+					icon: favicon("vofa.plus/"),
+					enabled: true,
+				},
+				{
+					name: "OpenMV",
+					url: "https://docs.openmv.io/v5.0.1/openmvcam/tutorial/index.html",
+					description:
+						"OpenMV官方文档",
+					icon: favicon("docs.openmv.io/v5.0.1/openmvcam/tutorial/index.html"),
+					enabled: true,
+				},
+				{
+					name: "K230",
+					url: "https://www.kendryte.com/k230_canmv/zh/v1.5/quick_start.html",
+					description:
+						"K230官方文档",
+					icon: favicon("kendryte.com/k230_canmv/zh/v1.5/quick_start.html"),
+					enabled: true,
+				},
+				{
+					name: "立创商城",
+					url: "https://www.szlcsc.com/",
+					description:
+						"立创商城官网，可以在这里查找元器件的数据手册",
+					icon: favicon("szlcsc.com/"),
+					enabled: true,
+				},
+				{
+					name: "Digikey",
+					url: "https://www.digikey.cn/",
+					description:
+						"得捷官网，可以在这里查元器件的数据手册",
+					icon: favicon("digikey.cn/"),
+					enabled: true,
+				},
+				{
+					name: "EPS32",
+					url: "https://documentation.espressif.com/en/home",
+					description:
+						"ESP32官方资源平台",
+					icon: favicon("documentation.espressif.com/en/home"),
+					enabled: true,
+				},
+				{
+					name: "STM32",
+					url: "https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html",
+					description:
+						"STM32官方产品中心",
+					icon: favicon("st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html"),
+					enabled: true,
+				},
+				{
+					name: "Arduino",
+					url: "https://docs.arduino.cc/",
+					description:
+						"Arduino官方技术文档",
+					icon: favicon("docs.arduino.cc/"),
+					enabled: true,
+				},
+				{
+					name: "Learn-Arduino",
+					url: "https://learn-arduino-red.vercel.app/",
+					description:
+						"面向初学者的arduino交互式入门学习网站",
+					icon: favicon("learn-arduino-red.vercel.app/"),
+					enabled: true,
+				},
+				{
+					name: "Platformio",
+					url: "https://platformio.org/",
+					description:
+						"面向多种microcontroller的嵌入式开发工具",
+					icon: favicon("platformio.org/"),
+					enabled: true,
+				},
+				{
+					name: "FreeRTOS",
+					url: "https://docs.freertos.org/Documentation/00-Overview",
+					description:
+						"FreeRTOS官方文档",
+					icon: favicon("docs.freertos.org/Documentation/00-Overview"),
+					enabled: true,
+				},
+			],
+		},
 		{
 			category: "AI相关网站",
 			description: "just AI",
@@ -106,124 +224,6 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 			],
 		},
 		{
-			category: "Embedded",
-			description: "分享一些嵌入式，硬件相关的网站",
-			items: [
-				{
-					name: "Wokwi",
-					url: "https://wokwi.com/",
-					description:
-						"在线microcontroller仿真网站",
-					icon: favicon("https://wokwi.com/"),
-					enabled: true,
-				},
-				{
-					name: "SerialWeb",
-					url: "https://conductance-lab.xyz/SerialWeb/",
-					description:
-						"在线串口调试工具，支持下载到本地(想要什么功能自己写.jpg)",
-					icon: favicon("https://conductance-lab.xyz/SerialWeb/"),
-					enabled: true,
-				},
-				{
-					name: "Interrupt",
-					url: "https://interrupt.memfault.com/",
-					description:
-						"一个以嵌入式系统为核心的博客社区",
-					icon: favicon("https://interrupt.memfault.com/"),
-					enabled: true,
-				},
-				{
-					name: "Vofa+",
-					url: "https://www.vofa.plus/",
-					description:
-						"可拓展，好用的一个串口调试软件",
-					icon: favicon("https://www.vofa.plus/"),
-					enabled: true,
-				},
-				{
-					name: "OpenMV",
-					url: "https://docs.openmv.io/v5.0.1/openmvcam/tutorial/index.html",
-					description:
-						"OpenMV官方文档",
-					icon: favicon("https://docs.openmv.io/v5.0.1/openmvcam/tutorial/index.html"),
-					enabled: true,
-				},
-				{
-					name: "K230",
-					url: "https://www.kendryte.com/k230_canmv/zh/v1.5/quick_start.html",
-					description:
-						"K230官方文档",
-					icon: favicon("https://www.kendryte.com/k230_canmv/zh/v1.5/quick_start.html"),
-					enabled: true,
-				},
-				{
-					name: "立创商城",
-					url: "https://www.szlcsc.com/",
-					description:
-						"立创商城官网，可以在这里查找元器件的数据手册",
-					icon: favicon("https://www.szlcsc.com/"),
-					enabled: true,
-				},
-				{
-					name: "Digikey",
-					url: "https://www.digikey.cn/",
-					description:
-						"得捷官网，可以在这里查元器件的数据手册",
-					icon: favicon("https://www.digikey.cn/"),
-					enabled: true,
-				},
-				{
-					name: "EPS32",
-					url: "https://documentation.espressif.com/en/home",
-					description:
-						"ESP32官方资源平台",
-					icon: favicon("https://documentation.espressif.com/en/home"),
-					enabled: true,
-				},
-				{
-					name: "STM32",
-					url: "https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html",
-					description:
-						"STM32官方产品中心",
-					icon: favicon("https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html"),
-					enabled: true,
-				},
-				{
-					name: "Arduino",
-					url: "https://docs.arduino.cc/",
-					description:
-						"Arduino官方技术文档",
-					icon: favicon("https://docs.arduino.cc/"),
-					enabled: true,
-				},
-				{
-					name: "Learn-Arduino",
-					url: "https://learn-arduino-red.vercel.app/",
-					description:
-						"面向初学者的arduino交互式入门学习网站",
-					icon: favicon("https://learn-arduino-red.vercel.app/"),
-					enabled: true,
-				},
-				{
-					name: "Platformio",
-					url: "https://platformio.org/",
-					description:
-						"面向多种microcontroller的嵌入式开发工具",
-					icon: favicon("https://platformio.org/"),
-					enabled: true,
-				},
-				{
-					name: "FreeRTOS",
-					url: "https://docs.freertos.org/Documentation/00-Overview",
-					description:
-						"FreeRTOS官方文档",
-					icon: favicon("https://docs.freertos.org/Documentation/00-Overview"),
-					enabled: true,
-				},
-			],
-		},
-		{
 			category: "Tools",
 			description: "一些实用工具",
 			items: [
@@ -231,7 +231,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					name: "在线绘图网站",
 					url: "https://app.diagrams.net/",
 					description: "用来给图片做一些标记的时候挺方便的",
-					icon: favicon("https://app.diagrams.net/"),
+					icon: favicon("app.diagrams.net/"),
 					enabled: true,
 				},
 				{
@@ -253,28 +253,28 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					name: "Online 3D Viewer",
 					url: "https://3dviewer.net/#",
 					description: "看3d打印文件时可以用",
-					icon: favicon("https://3dviewer.net/#"),
+					icon: favicon("3dviewer.net/#"),
 					enabled: true,
 				},
 				{
 					name: "rufes",
 					url: "https://rufus.ie/en/#download",
 					description: "非常好用的一款U盘工具",
-					icon: favicon("https://rufus.ie/en/#download"),
+					icon: favicon("rufus.ie/en/#download"),
 					enabled: true,
 				},
 				{
 					name: "转换云",
 					url: "https://www.zhuanhuanyun.cn/?to=.zh-warp",
 					description: "在线ncm转换网站",
-					icon: favicon("https://www.zhuanhuanyun.cn/?to=.zh-warp"),
+					icon: favicon("zhuanhuanyun.cn/?to=.zh-warp"),
 					enabled: true,
 				},
 				{
 					name: "FreeConvert",
 					url: "https://www.freeconvert.com/zh-CN",
 					description: "支持大多数格式互相转换",
-					icon: favicon("https://www.freeconvert.com/zh-CN"),
+					icon: favicon("freeconvert.com/zh-CN"),
 					enabled: true,
 				},
 			],
@@ -458,7 +458,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://touhou.market/main/works",
 					description:
 						"东方同人市场",
-					icon: favicon("https://touhou.market/main/works"),
+					icon: favicon("touhou.market/main/works"),
 					enabled: true,
 				},
 				{
@@ -466,7 +466,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://mifengchahua.cn/wwnewspaper",
 					description:
 						"秘封茶话社团官网",
-					icon: favicon("https://mifengchahua.cn/wwnewspaper"),
+					icon: favicon("mifengchahua.cn/wwnewspaper"),
 					enabled: true,
 				},
 				{
@@ -474,7 +474,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://thwiki.cc/%E9%A6%96%E9%A1%B5",
 					description:
 						"东方同人市场",
-					icon: favicon("https://thwiki.cc/%E9%A6%96%E9%A1%B5"),
+					icon: favicon("thwiki.cc/%E9%A6%96%E9%A1%B5"),
 					enabled: true,
 				},
 				{
@@ -482,7 +482,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://toho-vote.info/",
 					description:
 						"东方人气投票官网",
-					icon: favicon("https://toho-vote.info/"),
+					icon: favicon("toho-vote.info/"),
 					enabled: true,
 				},
 				{
@@ -490,7 +490,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://fumo.touhouspots.com/",
 					description:
 						"你可以在这里看到世界各地的Fumoᗜˬᗜ",
-					icon: favicon("https://fumo.touhouspots.com/"),
+					icon: favicon("fumo.touhouspots.com/"),
 					enabled: true,
 				},
 				{
@@ -498,7 +498,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://cloud.lilywhite.cc/s/4ZUW?path=%2F&native.theme=1",
 					description:
 						"东方正作下载",
-					icon: favicon("https://cloud.lilywhite.cc/s/4ZUW?path=%2F&native.theme=1"),
+					icon: favicon("cloud.lilywhite.cc/s/4ZUW?path=%2F&native.theme=1"),
 					enabled: true,
 				},
 				{
@@ -506,7 +506,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://koukoustreet.site/",
 					description:
 						"福建东方Project社群活动平台",
-					icon: favicon("https://koukoustreet.site/"),
+					icon: favicon("koukoustreet.site/"),
 					enabled: true,
 				},
 				{
@@ -514,7 +514,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://www.yystouhouhly.icu/",
 					description:
 						"锦州冬季THP官网",
-					icon: favicon("https://www.yystouhouhly.icu/"),
+					icon: favicon("www.yystouhouhly.icu/"),
 					enabled: true,
 				},
 			],
