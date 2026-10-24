@@ -19,7 +19,10 @@
  *   由 startTrackAnimation 逐帧重画竖轨，让轨跟着行一起动；轨长随折叠变化，
  *   同一阅读位置对应的弧长也变，故每次重画都重新定一次指示器目标；
  * - 手风琴的展开/收起状态挂在行容器的 is-collapsed 类上，子树隐藏交给
- *   CSS 结构（嵌套列表 + 0fr 裁剪），不再逐行打 is-hidden。
+ *   CSS 结构（嵌套列表 + 0fr 裁剪），不再逐行打 is-hidden；
+ * - 窄屏（< 96rem）复用同一份内部样式，只是外层改成右上角浮层并可折叠：
+ *   折叠态树不可见，标题矩形全是 0，update 短路只同步停靠；展开时重新测量。
+ *   停靠位置在窄屏固定取 CSS 顶部，不跟信息卡对齐。
  */
 
 import {
@@ -273,6 +276,7 @@ export class ArticleTocPanelController {
 	private readonly autoButton: HTMLButtonElement | null;
 	private readonly toggleAllButton: HTMLButtonElement | null;
 	private readonly mindmapButton: HTMLButtonElement | null;
+	private readonly collapseButton: HTMLButtonElement | null;
 	private readonly progressRegion: HTMLElement | null;
 	private readonly progressLabel: HTMLElement | null;
 	private readonly supportControl: HTMLElement | null;
@@ -389,6 +393,8 @@ export class ArticleTocPanelController {
 	/** 首次定态前不播动画（滚动恢复/前进后退落在转换区时防闪） */
 	private modeInitialized = false;
 	private modeInitFrame: number | null = null;
+	/** 窄屏浮层的折叠状态；每次导航重建控制器时回到「默认展开」 */
+	private collapsed = false;
 
 	constructor(root: HTMLElement) {
 		this.root = root;
@@ -399,6 +405,7 @@ export class ArticleTocPanelController {
 		this.autoButton = root.querySelector("[data-toc-auto-btn]");
 		this.toggleAllButton = root.querySelector("[data-toc-toggle-all-btn]");
 		this.mindmapButton = root.querySelector("[data-toc-mindmap-btn]");
+		this.collapseButton = root.querySelector("[data-toc-collapse-btn]");
 		this.progressRegion = root.querySelector("[data-toc-progress]");
 		this.progressLabel = root.querySelector("[data-toc-progress-label]");
 		this.supportControl = root.querySelector("[data-toc-support]");
@@ -492,7 +499,14 @@ export class ArticleTocPanelController {
 		this.resizeObserver?.disconnect();
 		this.resizeObserver = null;
 		this.root.style.top = "";
-		this.root.classList.remove("is-related-mode", "is-mode-no-anim");
+		this.root.classList.remove(
+			"is-related-mode",
+			"is-mode-no-anim",
+			"is-collapsed",
+		);
+		/* 折叠状态不跨导航保留：重新进入文章时默认展开 */
+		this.collapsed = false;
+		this.collapseButton?.setAttribute("aria-expanded", "true");
 		this.appliedRailTop = null;
 		if (this.animationFrame !== null) cancelAnimationFrame(this.animationFrame);
 		if (this.measureFrame !== null) cancelAnimationFrame(this.measureFrame);
@@ -619,6 +633,19 @@ export class ArticleTocPanelController {
 	}
 
 	/* ---------- 手风琴 ---------- */
+
+	/**
+	 * 窄屏浮层折叠：只切一个类，显示交给 CSS。
+	 * 折叠后树被隐藏，圆点矩形全为 0，几何计算没有意义，所以 update 直接短路；
+	 * 展开时尺寸变化较大，重新测量一次标题坐标与竖轨再恢复逐帧同步。
+	 */
+	private setCollapsed(collapsed: boolean): void {
+		if (this.collapsed === collapsed) return;
+		this.collapsed = collapsed;
+		this.root.classList.toggle("is-collapsed", collapsed);
+		this.collapseButton?.setAttribute("aria-expanded", String(!collapsed));
+		this.scheduleMeasure();
+	}
 
 	/** 自动手风琴开关：只控制「自动收拢」；展开跟随不受影响。
 	    开启时立即按当前阅读位置收拢一次，关闭则非活动分支保持现状 */
@@ -1264,6 +1291,11 @@ export class ArticleTocPanelController {
 		);
 	}
 
+	/** 与 CSS 里窄屏浮层的断点保持一致（96rem 以下） */
+	private isCompactLayout(): boolean {
+		return window.matchMedia("(max-width: 95.99rem)").matches;
+	}
+
 	/* 顶部跟随：页面在顶时面板顶与信息卡顶对齐；信息卡随页面上移越过停靠线
 	   （CSS 的 8rem，即原本与标题对齐的位置）后，钳制在停靠线悬停跟随。
 	   每帧实时取视口坐标，字体加载/折叠卡片导致的位移无需额外缓存。
@@ -1277,10 +1309,19 @@ export class ArticleTocPanelController {
 		if (!this.railHeight) return;
 
 		let followTop = this.railBaseTop;
-		const introTop = this.introAnchor?.getBoundingClientRect().top;
+		const compact = this.isCompactLayout();
+		/* 窄屏是右上角浮层：钉在 CSS 顶部即可，跟信息卡对齐会把它推到文章中部 */
+		const introTop = compact
+			? undefined
+			: this.introAnchor?.getBoundingClientRect().top;
 		if (introTop !== undefined) {
 			const fitTop = window.innerHeight - this.railHeight - RAIL_BOTTOM_GAP;
 			followTop = Math.min(Math.max(this.railBaseTop, introTop), fitTop);
+		}
+		if (compact) {
+			// 矮视口下不把浮层顶出屏幕（CSS 的 max-height 已限高，这里兜住极端情况）
+			const fitTop = window.innerHeight - this.railHeight - RAIL_BOTTOM_GAP;
+			followTop = Math.min(followTop, Math.max(RAIL_BOTTOM_GAP, fitTop));
 		}
 
 		if (this.footerEl) {
@@ -1302,7 +1343,9 @@ export class ArticleTocPanelController {
 	   未变也可能反向命中条件。手风琴和视图切换都不改变这个几何基准。 */
 	private evaluateMode(): void {
 		if (!this.transitionEnabled) return;
-		if (getComputedStyle(this.root).display === "none") return; // 窄屏面板不可见
+		/* 窄屏折叠时两套视图都不可见，切换没有意义，也会把状态带歪 */
+		if (this.collapsed) return;
+		if (getComputedStyle(this.root).display === "none") return; // 面板不可见
 		const anchorEl = this.licenseEl ?? this.fallbackAnchorEl;
 		if (!anchorEl) return;
 
@@ -1386,6 +1429,13 @@ export class ArticleTocPanelController {
 
 	private update(): void {
 		if (!this.tree) return;
+
+		/* 窄屏折叠后树不可见：只保留停靠位置同步，跳过一切基于标题几何的
+		   计算（隐藏元素的矩形全是 0，跑下去只会把指示器拽到角落） */
+		if (this.collapsed) {
+			this.syncDock();
+			return;
+		}
 
 		this.evaluateMode();
 		this.syncDock();
@@ -1907,6 +1957,11 @@ export class ArticleTocPanelController {
 		this.mindmapButton?.addEventListener("click", () => this.openMindmap(), {
 			signal,
 		});
+		this.collapseButton?.addEventListener(
+			"click",
+			() => this.setCollapsed(!this.collapsed),
+			{ signal },
+		);
 		this.mindmapZoomOutButton?.addEventListener(
 			"click",
 			() => this.setMindmapZoom(this.mindmapZoom - MINDMAP_ZOOM_STEP),

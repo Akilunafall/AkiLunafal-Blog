@@ -86,7 +86,7 @@ const statsSentences = [
 	aria-label={outlineLabel}
 >
 	<!-- 目录按内容收缩，操作区与统计卡片随目录一起切换；触发线由控制器独立计算。 -->
-	<div class="article-toc-panel__view" data-toc-view>
+	<div class="article-toc-panel__view" data-toc-view id="article-toc-panel-view">
 		<span class="article-toc-panel__highlight" data-toc-highlight aria-hidden="true"></span>
 		<header class="article-toc-panel__toolbar">
 			<h2 class="article-toc-panel__heading">
@@ -131,6 +131,23 @@ const statsSentences = [
 					aria-label={mindMapLabel}
 				>
 					<Icon name="ri:node-tree" class="h-4 w-4" />
+				</button>
+				<button
+					type="button"
+					class="article-toc-panel__tool-btn article-toc-panel__collapse-btn"
+					data-toc-collapse-btn
+					aria-expanded="true"
+					aria-controls="article-toc-panel-view"
+					aria-label={i18n(I18nKey.tableOfContents)}
+				>
+					<Icon
+						name="mdi:unfold-less-horizontal"
+						class="article-toc-panel__collapse-icon is-open h-4 w-4"
+					/>
+					<Icon
+						name="mdi:unfold-more-horizontal"
+						class="article-toc-panel__collapse-icon is-closed h-4 w-4"
+					/>
 				</button>
 			</div>
 		</header>

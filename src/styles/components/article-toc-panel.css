@@ -3,7 +3,10 @@
 	display: none;
 }
 
-@media (min-width: 96rem) and (hover: hover) and (pointer: fine) {
+/* 窄屏（< 96rem）也复用同一套内部样式，只是外层改成右上角可折叠浮层：
+   第二个媒体条件只放开样式生效范围，定位/尺寸由文件末尾的窄屏块覆盖。 */
+@media (min-width: 96rem) and (hover: hover) and (pointer: fine),
+	(max-width: 95.99rem) {
 	.article-toc-panel {
 		--article-toc-active: #0e7490;
 		--article-toc-panel-bg: var(--page-bg);
@@ -866,6 +869,70 @@
 			transition-duration: 1ms;
 			transition-delay: 0ms;
 		}
+	}
+}
+
+/* ---------- 折叠按钮与窄屏浮层 ---------- */
+
+/* 宽屏面板常驻正文右侧，不需要收起，折叠按钮只在窄屏出现 */
+.article-toc-panel__collapse-btn {
+	display: none;
+}
+
+.article-toc-panel__collapse-icon.is-closed {
+	display: none;
+}
+
+.article-toc-panel.is-collapsed .article-toc-panel__collapse-icon.is-open {
+	display: none;
+}
+
+.article-toc-panel.is-collapsed .article-toc-panel__collapse-icon.is-closed {
+	display: block;
+}
+
+@media (max-width: 95.99rem) {
+	.article-toc-panel {
+		/* 浮层自带内边距，树的可视高度要把这段也让出来 */
+		--toc-max-height: min(40rem, calc(100dvh - 9rem));
+
+		top: 5.5rem;
+		right: var(--space-4);
+		left: auto;
+		width: min(18rem, calc(100vw - var(--space-8)));
+		max-height: calc(100dvh - 7rem);
+		padding: var(--space-3);
+		border: 1px solid var(--line-divider);
+		border-radius: var(--radius-large);
+		background: var(--float-panel-bg);
+		box-shadow: 0 12px 32px rgb(0 0 0 / 18%);
+	}
+
+	:root.dark .article-toc-panel {
+		box-shadow: 0 12px 32px rgb(0 0 0 / 45%);
+	}
+
+	.article-toc-panel__collapse-btn {
+		display: grid;
+	}
+
+	/* 折叠态：只保留标题栏，宽度交给内容，变成一枚贴在右上角的小胶囊 */
+	.article-toc-panel.is-collapsed {
+		width: auto;
+		max-width: calc(100vw - var(--space-8));
+		max-height: none;
+		padding: var(--space-1) var(--space-2);
+	}
+
+	.article-toc-panel.is-collapsed .article-toc-panel__tree,
+	.article-toc-panel.is-collapsed .article-toc-panel__actions,
+	.article-toc-panel.is-collapsed .article-toc-panel__stats,
+	.article-toc-panel.is-collapsed .article-toc-panel__related,
+	.article-toc-panel.is-collapsed .article-toc-panel__plane,
+	.article-toc-panel.is-collapsed
+		.article-toc-panel__tools
+		> :not(.article-toc-panel__collapse-btn) {
+		display: none;
 	}
 }
 

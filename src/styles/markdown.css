@@ -305,3 +305,11 @@
   margin: 1.5rem auto !important;
   border-radius: var(--radius-large, 0.75rem);
 }
+
+/* 正文单图宽度上限：rehype-figure 会把图片包成 <center><figure><img>，
+   上面那条 p > img / > img 选择器匹配不到，这里单独限宽。
+   排除 .image-grid 内的图片，否则会压坏 [grid] 网格布局。 */
+.custom-md :not(.image-grid) > center > figure {
+  max-width: 32rem;
+  margin-inline: auto;
+}
