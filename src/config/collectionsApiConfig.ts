@@ -173,22 +173,8 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 				{
 					name: "PriceAI",
 					url: "https://priceai.cc/",
-					description: "正规代充，项目地址https://github.com/dimthink/PriceAI",
+					description: "AI订阅与API中转站比价平台，项目地址https://github.com/dimthink/PriceAI",
 					icon: favicon("priceai.cc"),
-					enabled: true,
-				},
-				{
-					name: "SchylerAI",
-					url: "https://api.schyler.top/register?aff=PQCWSZ22G9HF",
-					description: "中转站，坦白说我个人不太信任中转站，能官网直充还是官网直充吧",
-					icon: favicon("api.schyler.top"),
-					enabled: true,
-				},
-				{
-					name: "JOJO Code",
-					url: "https://jojocode.com/dashboard/overview",
-					description: "中转站，坦白说我个人不太信任中转站，能官网直充还是官网直充吧",
-					icon: favicon("jojocode.com"),
 					enabled: true,
 				},
 				{
