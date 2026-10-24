@@ -3,7 +3,7 @@ title: 重庆印象
 published: 2026-10-23
 image: ./assets/Chongqing.webp
 draft: false
-pinned: false
+pinned: true
 tags: [travel, 城市印象, 重庆]
 category: 游记
 ---

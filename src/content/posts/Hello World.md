@@ -3,7 +3,7 @@ title: Hello World!
 published: 2026-10-19
 image: ./assets/Hello World.webp
 draft: false
-pinned: true
+pinned: false
 tags: [小站]
 category: 小站相关
 ---
