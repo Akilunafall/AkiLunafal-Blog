@@ -1,6 +1,6 @@
 ---
 title: 重庆印象
-published: 2026-10-23
+published: 2026-10-24
 image: ./assets/Chongqing.webp
 draft: false
 pinned: true
