@@ -71,8 +71,8 @@ category: 游记
 两个时代就这么挤在同一个取景框里，隔着一条街对望~
 
 
-![重庆地铁5号线](./image/Chongqing/8.webp)
 ![重庆西站](./image/Chongqing/9.webp)
+![返校](./image/Chongqing/29.webp)
 虽然只待了十几个小时，也足够把这座城刻进我的记忆里了  
 下次再来，估计就是冲着重庆tho了吧~
 
