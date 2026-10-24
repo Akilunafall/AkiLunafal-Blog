@@ -178,6 +178,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					enabled: true,
 				},
 				{
+					name: "HubCore",
+					url: "https://hubcore.cn/register?aff=B3S9XEWQJS26",
+					description: "中转站，建议能官网直充还是直充",
+					icon: favicon("hubcore.cn/register?aff=B3S9XEWQJS26"),
+					enabled: true,
+				},
+				{
 					name: "Skills Marketplace",
 					url: "https://skillsmp.com/",
 					description: "skill市场",
