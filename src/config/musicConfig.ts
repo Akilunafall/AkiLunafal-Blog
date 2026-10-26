@@ -59,10 +59,69 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				cover: "/assets/music/cover/Lupinus.webp",
 				lrc: "",
 			},
+			{
+				name: "幽霊楽団 - Fantastic dream style Take2",
+				artist: "S-STYLE / 花映～はなうつり～",
+				url: "/assets/music/幽霊楽団 - Fantastic dream style Take2 - - S-STYLE.mp3",
+				cover:
+					"/assets/music/cover/幽霊楽団 - Fantastic dream style Take2.webp",
+				lrc: "",
+			},
+			{
+				name: "幽霊楽団 - sound sepher",
+				artist: "Foxtail-Grass Studio / Lupinus 幻想写景 -風-",
+				url: "/assets/music/幽霊楽団 - sound sepher.mp3",
+				cover: "/assets/music/cover/幽霊楽団 - sound sepher.webp",
+				lrc: "",
+			},
+			{
+				name: "思い浮かぶままに色々繋げて弾いてみた 3",
+				artist: "魂音泉 / 东方流星少女 改(~aKino ryusei remix~)",
+				url: "/assets/music/思い浮かぶままに色々繋げて弾いてみた 3 - Coro.mp3",
+				cover:
+					"/assets/music/cover/思い浮かぶままに色々繋げて弾いてみた 3.webp",
+				lrc: "",
+			},
+			{
+				name: "秋风のとおり道",
+				artist:
+					"趣味工房にんじんわいん / 飒 HAYATE 风神华伝(HAYATE ~ Fuujin Kaden)",
+				url: "/assets/music/秋风のとおり道 - 趣味工房にんじんわいん.mp3",
+				cover: "/assets/music/cover/秋风のとおり道.webp",
+				lrc: "",
+			},
+			{
+				name: "かぜのねいろ",
+				artist: "凋叶棕 / 随",
+				url: "/assets/music/凋叶棕 - かぜのねいろ.mp3",
+				cover: "/assets/music/cover/かぜのねいろ.webp",
+				lrc: "",
+			},
+			{
+				name: "春眠猫の夢",
+				artist: "Foxtail-Grass Studio / ゆきどけアゼリア",
+				url: "/assets/music/Foxtail-Grass Studio - 春眠猫の夢.mp3",
+				cover: "/assets/music/cover/春眠猫の夢.webp",
+				lrc: "",
+			},
+			{
+				name: "旧地獄街道を行く",
+				artist: "Pizuyas Cell / 地底の草庵小座敷",
+				url: "/assets/music/Pizuyas Cell - 旧地獄街道を行く.mp3",
+				cover: "/assets/music/cover/旧地獄街道を行く.webp",
+				lrc: "",
+			},
+			{
+				name: "うたかたの風と蝉時雨",
+				artist: "FELT / Little Planet(FELT-008)",
+				url: "/assets/music/うたかたの風と蝉時雨 - FELT.mp3",
+				cover: "/assets/music/cover/うたかたの風と蝉時雨 - FELT.webp",
+				lrc: "",
+			},
 		],
 	},
 
-	// 可视化器配置
+	// 可视化器配置[]
 	visualizer: {
 		background: {
 			dark: "#000000",
