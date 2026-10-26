@@ -97,7 +97,10 @@ export const homeConfig: HomeConfig = {
 					speaker: "host",
 					text: "对了，得搬上简介了~让本狐找找：五谷丰登，风调雨顺。",
 				},
-				{ speaker: "host", text: "想打听啥？戳戳下面的话题，让本狐跟你慢慢唠～" },
+				{
+					speaker: "host",
+					text: "想打听啥？戳戳下面的话题，让本狐跟你慢慢唠～",
+				},
 			],
 			// 话题菜单：点击进入逐句对话，末句后返回菜单
 			topics: [
@@ -212,7 +215,8 @@ export const homeConfig: HomeConfig = {
 			},
 			composite: {
 				title: "筑一间小屋",
-				description: "也许是蓄谋已久，也许是心血来潮，总之，我会尽力让这个小屋变得更好。",
+				description:
+					"也许是蓄谋已久，也许是心血来潮，总之，我会尽力让这个小屋变得更好。",
 				alt: "第一幕插画",
 				// 明信片左下角标题下的完整日期；删掉即只显示标题
 				date: "2026 / 10 / 18",

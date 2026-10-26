@@ -1,121 +1,121 @@
 <script lang="ts">
-	import { MessageCircle, Send, Trash2 } from "lucide-svelte";
-	import { onMount } from "svelte";
+import { MessageCircle, Send, Trash2 } from "lucide-svelte";
+import { onMount } from "svelte";
 
-	interface GuestbookEntry {
-		id: string;
-		nickname: string;
-		content: string;
-		createdAt: string;
+interface GuestbookEntry {
+	id: string;
+	nickname: string;
+	content: string;
+	createdAt: string;
+}
+
+const ENTRIES_KEY = "aki-lunafall-local-guestbook-v1";
+const PROFILE_KEY = "aki-lunafall-local-guestbook-profile-v1";
+const MAX_ENTRIES = 500;
+const MAX_CONTENT_LENGTH = 300;
+
+let entries = $state<GuestbookEntry[]>([]);
+let nickname = $state("");
+let content = $state("");
+let error = $state("");
+let storageAvailable = $state(true);
+
+function parseEntries(raw: string | null): GuestbookEntry[] {
+	if (!raw) return [];
+
+	try {
+		const parsed: unknown = JSON.parse(raw);
+		if (!Array.isArray(parsed)) return [];
+		return parsed
+			.filter(
+				(entry): entry is GuestbookEntry =>
+					!!entry &&
+					typeof entry.id === "string" &&
+					typeof entry.nickname === "string" &&
+					typeof entry.content === "string" &&
+					typeof entry.createdAt === "string",
+			)
+			.slice(0, MAX_ENTRIES);
+	} catch {
+		return [];
+	}
+}
+
+function persistEntries(nextEntries: GuestbookEntry[]) {
+	entries = nextEntries;
+	try {
+		localStorage.setItem(ENTRIES_KEY, JSON.stringify(nextEntries));
+		storageAvailable = true;
+	} catch {
+		storageAvailable = false;
+	}
+}
+
+function handleStorage(event: StorageEvent) {
+	if (event.key === ENTRIES_KEY || event.key === null) {
+		entries = parseEntries(event.newValue);
+	}
+}
+
+onMount(() => {
+	try {
+		entries = parseEntries(localStorage.getItem(ENTRIES_KEY));
+		nickname = localStorage.getItem(PROFILE_KEY) ?? "";
+	} catch {
+		storageAvailable = false;
+	}
+	window.addEventListener("storage", handleStorage);
+	return () => window.removeEventListener("storage", handleStorage);
+});
+
+function handleSubmit(event: SubmitEvent) {
+	event.preventDefault();
+	error = "";
+	const cleanNickname = nickname.trim();
+	const cleanContent = content.trim();
+
+	if (!cleanNickname) {
+		error = "请填写昵称。";
+		return;
+	}
+	if (cleanContent.length < 2 || cleanContent.length > MAX_CONTENT_LENGTH) {
+		error = `留言长度需要在 2 到 ${MAX_CONTENT_LENGTH} 个字符之间。`;
+		return;
 	}
 
-	const ENTRIES_KEY = "aki-lunafall-local-guestbook-v1";
-	const PROFILE_KEY = "aki-lunafall-local-guestbook-profile-v1";
-	const MAX_ENTRIES = 500;
-	const MAX_CONTENT_LENGTH = 300;
+	const entry: GuestbookEntry = {
+		id:
+			typeof crypto !== "undefined" && "randomUUID" in crypto
+				? crypto.randomUUID()
+				: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+		nickname: cleanNickname.slice(0, 24),
+		content: cleanContent,
+		createdAt: new Date().toISOString(),
+	};
 
-	let entries = $state<GuestbookEntry[]>([]);
-	let nickname = $state("");
-	let content = $state("");
-	let error = $state("");
-	let storageAvailable = $state(true);
-
-	function parseEntries(raw: string | null): GuestbookEntry[] {
-		if (!raw) return [];
-
-		try {
-			const parsed: unknown = JSON.parse(raw);
-			if (!Array.isArray(parsed)) return [];
-			return parsed
-				.filter(
-					(entry): entry is GuestbookEntry =>
-						!!entry &&
-						typeof entry.id === "string" &&
-						typeof entry.nickname === "string" &&
-						typeof entry.content === "string" &&
-						typeof entry.createdAt === "string",
-				)
-				.slice(0, MAX_ENTRIES);
-		} catch {
-			return [];
-		}
+	try {
+		localStorage.setItem(PROFILE_KEY, entry.nickname);
+	} catch {
+		storageAvailable = false;
 	}
+	persistEntries([entry, ...entries].slice(0, MAX_ENTRIES));
+	nickname = entry.nickname;
+	content = "";
+}
 
-	function persistEntries(nextEntries: GuestbookEntry[]) {
-		entries = nextEntries;
-		try {
-			localStorage.setItem(ENTRIES_KEY, JSON.stringify(nextEntries));
-			storageAvailable = true;
-		} catch {
-			storageAvailable = false;
-		}
-	}
+function deleteEntry(id: string) {
+	persistEntries(entries.filter((entry) => entry.id !== id));
+}
 
-	function handleStorage(event: StorageEvent) {
-		if (event.key === ENTRIES_KEY || event.key === null) {
-			entries = parseEntries(event.newValue);
-		}
-	}
-
-	onMount(() => {
-		try {
-			entries = parseEntries(localStorage.getItem(ENTRIES_KEY));
-			nickname = localStorage.getItem(PROFILE_KEY) ?? "";
-		} catch {
-			storageAvailable = false;
-		}
-		window.addEventListener("storage", handleStorage);
-		return () => window.removeEventListener("storage", handleStorage);
-	});
-
-	function handleSubmit(event: SubmitEvent) {
-		event.preventDefault();
-		error = "";
-		const cleanNickname = nickname.trim();
-		const cleanContent = content.trim();
-
-		if (!cleanNickname) {
-			error = "请填写昵称。";
-			return;
-		}
-		if (cleanContent.length < 2 || cleanContent.length > MAX_CONTENT_LENGTH) {
-			error = `留言长度需要在 2 到 ${MAX_CONTENT_LENGTH} 个字符之间。`;
-			return;
-		}
-
-		const entry: GuestbookEntry = {
-			id:
-				typeof crypto !== "undefined" && "randomUUID" in crypto
-					? crypto.randomUUID()
-					: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-			nickname: cleanNickname.slice(0, 24),
-			content: cleanContent,
-			createdAt: new Date().toISOString(),
-		};
-
-		try {
-			localStorage.setItem(PROFILE_KEY, entry.nickname);
-		} catch {
-			storageAvailable = false;
-		}
-		persistEntries([entry, ...entries].slice(0, MAX_ENTRIES));
-		nickname = entry.nickname;
-		content = "";
-	}
-
-	function deleteEntry(id: string) {
-		persistEntries(entries.filter((entry) => entry.id !== id));
-	}
-
-	function formatDate(value: string) {
-		const date = new Date(value);
-		return Number.isNaN(date.getTime())
-			? ""
-			: new Intl.DateTimeFormat("zh-CN", {
-					dateStyle: "medium",
-					timeStyle: "short",
-				}).format(date);
-	}
+function formatDate(value: string) {
+	const date = new Date(value);
+	return Number.isNaN(date.getTime())
+		? ""
+		: new Intl.DateTimeFormat("zh-CN", {
+				dateStyle: "medium",
+				timeStyle: "short",
+			}).format(date);
+}
 </script>
 
 <section class="local-guestbook" aria-labelledby="local-guestbook-title">

@@ -35,7 +35,5 @@ export const footerConfig: FooterConfig = {
 	},
 
 	// Powered by 信息
-	poweredBy: [
-		{ label: "框架", name: "Astro", href: "https://astro.build" },
-	],
+	poweredBy: [{ label: "框架", name: "Astro", href: "https://astro.build" }],
 };

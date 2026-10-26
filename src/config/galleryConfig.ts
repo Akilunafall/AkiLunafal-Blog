@@ -16,8 +16,7 @@ export const galleryConfig: GalleryConfig = {
 		{
 			id: "travel",
 			name: "生活中的杂杂碎碎",
-			description:
-				"通常是有感而拍，我想把我的所见所闻所想都放进来",
+			description: "通常是有感而拍，我想把我的所见所闻所想都放进来",
 			location: "any where",
 			date: "any time",
 			tags: ["travel", "fumo"],

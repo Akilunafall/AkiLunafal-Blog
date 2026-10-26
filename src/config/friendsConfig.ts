@@ -68,7 +68,6 @@ export const friendsPageConfig: FriendsPageConfig = {
 
 // 友链配置
 export const friendsConfig: FriendLink[] = [
-
 	{
 		title: "夜樱手帐",
 		imgurl: "https://rhsy.moe/images/avatar.jpg",

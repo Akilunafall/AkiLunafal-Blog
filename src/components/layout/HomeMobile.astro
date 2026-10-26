@@ -1,21 +1,21 @@
 ---
 import CoverImage from "@components/common/CoverImage.astro";
 import Icon from "@components/common/Icon.astro";
-import type { CoverImageSource } from "@/types/cover-image";
 import { homeConfig, siteConfig } from "@/config";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
+import type { CoverImageSource } from "@/types/cover-image";
 import {
 	getCategoryList,
 	getSortedPosts,
 	getTagList,
 } from "@/utils/content-utils";
+import { buildCoverImage } from "@/utils/cover-image";
 import { formatDateI18n } from "@/utils/date-utils";
 import {
 	countReadableCharacters,
 	formatCompactNumber,
 } from "@/utils/home-data-layer.js";
-import { buildCoverImage } from "@/utils/cover-image";
 import { getGuidePostSets } from "@/utils/home-guide-grid.js";
 import { processCoverImageSync } from "@/utils/image-utils";
 import {

@@ -554,7 +554,7 @@ function bindEvents(): void {
 	});
 	panel.addEventListener("focusout", (event) => {
 		// 移动端底部卡片不随焦点移出收起：触屏点链接不会把焦点挪过去，
-			// 面板内元素失焦回 body 时 relatedTarget 为空，会被误判成焦点离开面板。
+		// 面板内元素失焦回 body 时 relatedTarget 为空，会被误判成焦点离开面板。
 		if (openedAsMobile) return;
 		const next = event.relatedTarget;
 		if (

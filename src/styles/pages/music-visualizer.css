@@ -658,11 +658,16 @@ html:has(.music-visualizer-page) .footer {
 	outline-offset: 3px;
 }
 
+/* 歌单里曲名/艺术家常有「艺术家 / 专辑」这类长组合，单行 nowrap 会截成
+   「…(HAYATE ~ Fu…」。改为最多两行折行显示，超出才省略。 */
 .music-visualizer__playlist-name,
 .music-visualizer__playlist-artist {
+	display: -webkit-box;
 	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+	overflow-wrap: anywhere;
+	white-space: normal;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 .music-visualizer__side-panel {
@@ -2350,55 +2355,40 @@ html:has(.music-visualizer-page) .footer {
 		transform: none;
 	}
 
+	/* 歌名 / 艺术家：桌面端固定在左上角横排两行，第一行歌名、第二行艺术家 */
 	.music-visualizer__divider-meta {
-		position: relative;
-		grid-column: 2;
-		grid-row: 1;
+		position: absolute;
+		top: clamp(72px, 8vh, 104px);
+		left: clamp(32px, 6vw, 112px);
 		z-index: 4;
-		justify-self: stretch;
-		align-self: center;
-		width: 100%;
-		height: calc(clamp(198px, 20vw, 300px) + 36px);
-		min-height: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+		max-width: min(60vw, 780px);
 		color: rgba(255, 255, 255, 0.88);
 		font-weight: 700;
 		text-shadow: 0 2px 12px rgba(0, 0, 0, 0.62);
 		pointer-events: none;
-		transform: translateX(clamp(-48px, -2.5vw, -24px));
-	}
-
-	.music-visualizer__divider-meta::before {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 50%;
-		width: 1px;
-		background: rgba(255, 255, 255, 0.42);
-		box-shadow: 0 0 14px rgba(39, 226, 255, 0.18);
-		content: "";
 	}
 
 	.music-visualizer__divider-title,
 	.music-visualizer__divider-artist {
-		position: absolute;
 		display: block;
-		max-height: 42%;
+		max-width: 100%;
 		overflow: hidden;
+		text-align: left;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		writing-mode: vertical-rl;
+		writing-mode: horizontal-tb;
 	}
 
 	.music-visualizer__divider-title {
-		top: 8%;
-		left: calc(50% - clamp(30px, 3.1vw, 52px));
 		font-size: clamp(18px, 1.65vw, 28px);
 		letter-spacing: 0;
 	}
 
 	.music-visualizer__divider-artist {
-		right: calc(50% - clamp(16px, 2vw, 30px));
-		bottom: 8%;
 		color: rgba(255, 255, 255, 0.56);
 		font-size: clamp(13px, 1.1vw, 18px);
 		font-weight: 600;
