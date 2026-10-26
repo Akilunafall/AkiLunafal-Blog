@@ -1,16 +1,26 @@
 ---
+import MusicVisualizer from "@components/features/music-visualizer/MusicVisualizer.svelte";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { siteConfig } from "@/config";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
+import "@/styles/pages/music-visualizer.css";
 
+// 页面开关：关闭时重定向到 404（与 archive / categories 保持一致）
 if (!siteConfig.pages.music) {
 	return Astro.redirect("/404/");
 }
 ---
 
-
-<MainGridLayout title={i18n(I18nKey.music)} description="音乐页面暂时关闭，站内播放器仍可使用。" hasOwnH1={true}>
-	<h1 class="sr-only">{i18n(I18nKey.music)}</h1>
-	<p class="py-20 text-center text-lg" role="status">音乐功能暂时关闭，站内播放器仍可正常使用。</p>
+<MainGridLayout
+	title={i18n(I18nKey.music)}
+	description={i18n(I18nKey.musicVisualizerDescription)}
+	hasOwnH1={true}
+>
+	{/* 全屏可视化页没有可见标题，仍要保证每页恰好一个 H1 */}
+	<h1 class="sr-only">{i18n(I18nKey.musicVisualizer)}</h1>
+	<div class="music-visualizer-page">
+		{/* three.js 依赖 window，且只在客户端有意义，用 client:only 避免 SSR 空跑 */}
+		<MusicVisualizer client:only="svelte" />
+	</div>
 </MainGridLayout>

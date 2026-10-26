@@ -27,8 +27,7 @@ export const announcementConfig: AnnouncementConfig = {
 		{
 			tag: "注意",
 			title: "推荐使用电脑端打开此网站",
-			content:
-				"目前对手机端的适配不是很好，好多ui比例和功能失调了> <",
+			content: "目前对手机端的适配不是很好，好多ui比例和功能失调了> <",
 			time: "2026-10-19",
 			link: "",
 			sort: 5,
@@ -41,15 +40,6 @@ export const announcementConfig: AnnouncementConfig = {
 			time: "2026-10-19",
 			link: "/guestbook/",
 			sort: 4,
-		},
-		{
-			tag: "音乐",
-			title: "左下角可以打开音乐播放器～",
-			content:
-				"左下角的悬浮坞里藏着音乐播放器，歌单会慢慢补充。独立的音乐页还没上线，先在这里听叭————",
-			time: "2026-10-19",
-			link: "",
-			sort: 2,
 		},
 	],
 
