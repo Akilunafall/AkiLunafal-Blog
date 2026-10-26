@@ -270,6 +270,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("freeconvert.com/zh-CN"),
 					enabled: true,
 				},
+				{
+					name: "RUNOOB",
+					url: "https://www.runoob.com/",
+					description: "提供多种编程语言和开发技术的基础教程",
+					icon: favicon("runoob.com"),
+					enabled: true,
+				},
 			],
 		},
 		{
