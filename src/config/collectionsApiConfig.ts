@@ -116,6 +116,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("docs.freertos.org/Documentation/00-Overview"),
 					enabled: true,
 				},
+				{
+					name: "doitwiki",
+					url: "https://www.doitwiki.com/",
+					description: "综合性的DIY创作与技术分享平台",
+					icon: favicon("doitwiki.com/"),
+					enabled: true,
+				},
 			],
 		},
 		{
