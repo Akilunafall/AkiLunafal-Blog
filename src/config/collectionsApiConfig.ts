@@ -504,6 +504,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("www.yystouhouhly.icu/"),
 					enabled: true,
 				},
+				{
+					name: "幻想乡表情收藏",
+					url: "https://www.touhou-sticker.cn/",
+					description: "车万表情包",
+					icon: favicon("touhou-sticker.cn"),
+					enabled: true,
+				},
 			],
 		},
 	],
