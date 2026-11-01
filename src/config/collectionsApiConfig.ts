@@ -518,6 +518,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("touhou-sticker.cn"),
 					enabled: true,
 				},
+				{
+					name: "dizzylab",
+					url: "https://www.dizzylab.net/",
+					description: "专注于音乐创作和社团分享的社团平台，不全是东方project",
+					icon: favicon("www.dizzylab.net/"),
+					enabled: true,
+				},
 			],
 		},
 	],
