@@ -505,6 +505,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					enabled: true,
 				},
 				{
+					name: "RD-Sounds",
+					url: "https://www.rd-sounds.com/",
+					description: "凋叶棕社团官网",
+					icon: favicon("www.rd-sounds.com/"),
+					enabled: true,
+				},
+				{
 					name: "幻想乡表情收藏",
 					url: "https://www.touhou-sticker.cn/",
 					description: "车万表情包",
