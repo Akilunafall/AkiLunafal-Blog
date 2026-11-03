@@ -5,6 +5,7 @@ import { footerConfig, homeConfig, siteConfig } from "@/config";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import { getSortedPosts } from "@/utils/content-utils";
+import { getLatestCommitDate } from "@/utils/site-update-utils";
 import { url } from "@/utils/url-utils";
 
 const currentYear = new Date().getFullYear();
@@ -31,14 +32,16 @@ const initialRunningDays =
 		? null
 		: Math.max(0, Math.floor((Date.now() - startTimestamp) / 86_400_000));
 
+// “最后更新于”取仓库最近一次提交时间，反映推送行为而非单篇文章的发布时间；
+// 构建环境取不到 git 提交时回退到最新文章的发布时间。
+const commitDate = getLatestCommitDate();
 const posts = await getSortedPosts();
 const latestPost = posts.reduce((latest, post) => {
 	if (!latest) return post;
 	return post.data.published > latest.data.published ? post : latest;
 }, posts[0]);
-const lastPostDate = latestPost
-	? latestPost.data.published.toISOString()
-	: null;
+const lastUpdateDate =
+	commitDate ?? (latestPost ? latestPost.data.published.toISOString() : null);
 
 const runningTimeText = i18n(I18nKey.footerRunningTime);
 const lastUpdateText = i18n(I18nKey.footerLastUpdate);
@@ -80,7 +83,7 @@ function getInitialLastUpdateText(value: string | null): string | null {
 		: lastUpdateText.replace("{days}", days.toString());
 }
 
-const initialLastUpdateText = getInitialLastUpdateText(lastPostDate);
+const initialLastUpdateText = getInitialLastUpdateText(lastUpdateDate);
 
 // mailto:/tel: 链接不在新标签打开
 const opensInNewTab = (href: string) => !/^(mailto:|tel:)/i.test(href);
@@ -189,7 +192,7 @@ const opensInNewTab = (href: string) => !/^(mailto:|tel:)/i.test(href);
 	</div>
 </footer>
 
-<script is:inline define:vars={{ siteStartDate, lastPostDate, runningTimeText, lastUpdateText, todayText }}>
+<script is:inline define:vars={{ siteStartDate, lastUpdateDate, runningTimeText, lastUpdateText, todayText }}>
 	const footer = document.querySelector("[data-site-footer]");
 
 	function parseSiteStartTimestamp(value) {
@@ -220,7 +223,9 @@ const opensInNewTab = (href: string) => !/^(mailto:|tel:)/i.test(href);
 		const runningTimeElement = footer.querySelector("[data-footer-running-time]");
 		const lastUpdateElement = footer.querySelector("[data-footer-last-update]");
 		const startTimestamp = parseSiteStartTimestamp(siteStartDate);
-		const lastPostTimestamp = lastPostDate ? Date.parse(lastPostDate) : Number.NaN;
+		const lastUpdateTimestamp = lastUpdateDate
+			? Date.parse(lastUpdateDate)
+			: Number.NaN;
 
 		function updateFooterStats() {
 			const now = Date.now();
@@ -231,10 +236,10 @@ const opensInNewTab = (href: string) => !/^(mailto:|tel:)/i.test(href);
 				runningTimeElement.textContent = formatRunningTime(template, elapsedSeconds);
 			}
 
-			if (lastUpdateElement && !Number.isNaN(lastPostTimestamp)) {
+			if (lastUpdateElement && !Number.isNaN(lastUpdateTimestamp)) {
 				const daysSinceLastUpdate = Math.max(
 					0,
-					Math.floor((now - lastPostTimestamp) / 86_400_000),
+					Math.floor((now - lastUpdateTimestamp) / 86_400_000),
 				);
 				const template = lastUpdateElement.dataset.template || lastUpdateText;
 				const todayLabel = lastUpdateElement.dataset.today || todayText;
