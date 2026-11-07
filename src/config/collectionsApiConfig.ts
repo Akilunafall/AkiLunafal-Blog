@@ -130,6 +130,20 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("doitwiki.com/"),
 					enabled: true,
 				},
+				{
+					name: "ADI资料库",
+					url: "https://www.analog.com/cn/resources.html",
+					description: "ADI公司的资料库，提供各种技术文档、应用笔记和设计资源",
+					icon: favicon("analog.com"),
+					enabled: true,
+				},
+				{
+					name: "立创开源硬件平台",
+					url: "https://oshwhub.com/explore?jspm=hub.hm.tb.ky___hub.gc.tb.sy&jlc_vid=QlRWUVFeQ1VdVwdTEQJZXwVTFVILA1ECQFNYA1dRQFUxVlNfQ1FYV1JSRVFdXjtWKAkaExQVTU5BCBcOAAkbBUoFGAw%3D",
+					description: "嘉立创官方开源硬件平台",
+					icon: favicon("oshwhub.com/"),
+					enabled: true,
+				},
 			],
 		},
 		{
