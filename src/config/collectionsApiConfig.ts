@@ -45,6 +45,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					enabled: true,
 				},
 				{
+					name: "电子煎饼",
+					url: "https://digitalpancake.top/",
+					description: "面向电子设计学习者的赛题、实践文章与真实购买经验社区",
+					icon: favicon("digitalpancake.top"),
+					enabled: true,
+				},
+				{
 					name: "OpenMV",
 					url: "https://docs.openmv.io/v5.0.1/openmvcam/tutorial/index.html",
 					description: "OpenMV官方文档",
@@ -438,7 +445,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 				{
 					name: "LLBot",
 					url: "https://github.com/LLOneBot/LuckyLilliaBot",
-					description: "基于 NTQQ 的轻量 QQ 机器人框架，支持 OneBot 协议。",
+					description: "基于NTQQ的轻量QQ机器人框架，支持OneBot协议。",
 					icon: favicon("github.com"),
 					enabled: true,
 				},
@@ -523,6 +530,14 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					url: "https://www.dizzylab.net/",
 					description: "专注于音乐创作和社团分享的社团平台，不全是东方project",
 					icon: favicon("www.dizzylab.net/"),
+					enabled: true,
+				},
+				{
+					name: "东方同人接力归档站",
+					url: "https://yuriko.cn",
+					description:
+						"一个用于整理，展示，归档的东方Project同人接力活动的网站",
+					icon: favicon("yuriko.cn"),
 					enabled: true,
 				},
 			],
