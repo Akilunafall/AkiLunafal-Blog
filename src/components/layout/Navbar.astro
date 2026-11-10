@@ -409,6 +409,20 @@ function moveHighlight(navContainer: HTMLElement, hoverBorder: HTMLElement, item
 	hoverBorder.style.top = `${rect.top - containerRect.top}px`;
 }
 
+/**
+ * 按当前高亮项重新量一次框的位置。
+ * 首屏时脚本可能早于样式表 / webfont 落地，那时量到的是 0 宽，写进 inline style
+ * 后没有任何重算时机，于是鼠标悬停也一直看不到黑色药丸。
+ */
+function syncHighlightedItemPosition(navContainer: HTMLElement, hoverBorder: HTMLElement) {
+	const target = navContainer.querySelector<HTMLElement>(
+		':scope > .dropdown-container.is-highlighted',
+	);
+	if (!target) return;
+	if (target.getBoundingClientRect().width <= 0) return;
+	moveHighlight(navContainer, hoverBorder, target);
+}
+
 interface NavbarIconParts {
 	layer: HTMLElement;
 	current: HTMLElement;
@@ -698,9 +712,16 @@ function initHoverSlider(animateActiveChange = false) {
 			const parts = getNavbarIconParts(_navContainer);
 			const template = getNavbarIconTemplate(activeItem);
 			if (parts && template) setNavbarIconBox(_navContainer, parts.layer, template);
+			syncHighlightedItemPosition(_navContainer, _hoverBorder);
 			repositionNavbarDropdown();
 		});
 	}
+
+	// 字体迟到也会改变导航项宽度：量一次再定位，避免首屏量到的错位一直跟着
+	document.fonts.ready.then(() => {
+		if (_hoverSliderAbortController?.signal.aborted ?? true) return;
+		syncHighlightedItemPosition(_navContainer, _hoverBorder);
+	});
 
 	_navbarIconResizeObserver = new ResizeObserver(scheduleIconPositionSync);
 	_navbarIconResizeObserver.observe(_navContainer);

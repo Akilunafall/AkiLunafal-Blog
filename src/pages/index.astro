@@ -26,3 +26,18 @@ import "@/styles/components/home-blinds.css";---
 		<HomeMobile />
 	</div>
 </MainGridLayout>
+
+<!--
+	兜底：motion-pending 由 hero 模块在初始化完成后摘掉，CSS 会用它按住标题与联系按钮
+	（opacity/visibility 都为隐藏）。首屏 chunk 慢或加载失败时模块根本跑不到摘类那一步，
+	标题就一直是空的，刷新一次才出现。这里只做「模块确实没接管」的兜底，正常路径下
+	4s 时 heroMounted 已是 true，脚本什么都不做。
+-->
+<script is:inline>
+	setTimeout(function () {
+		var hero = document.querySelector("[data-home-hero]");
+		if (!hero || hero.dataset.heroMounted === "true") return;
+		var pending = document.querySelector(".home-page--motion-pending");
+		if (pending) pending.classList.remove("home-page--motion-pending");
+	}, 4000);
+</script>

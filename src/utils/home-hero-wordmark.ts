@@ -280,8 +280,18 @@ function mountWordmark(parts: WordmarkParts): HomeHeroWordmarkController {
 			1,
 			natural.actualBoundingBoxLeft + natural.actualBoundingBoxRight,
 		);
+		// 样式表或字体晚于脚本落地时，容器的 clientWidth 还停在兜底的 1px，算出来的
+		// fit 会 ≤ 0；负字号会让 canvas 画出一团错位的东西，而 is-mounted 一挂上占位
+		// 文字又变透明，整块字标就此消失。这里宁可返回 null 不接管，等下一次 resize
+		// 重建 —— 期间占位文字仍在，用户至少能看到名字。
+		const available = width - ink.x1;
+		if (!Number.isFinite(available) || available <= 0) {
+			word = null;
+			glyphs = [];
+			return null;
+		}
 		// 名字过长把容器撑破时等比缩小，正常版式下 fit 恒为 1（保持原字号）
-		const fit = Math.min(1, (width - ink.x1) / naturalWidth);
+		const fit = Math.min(1, available / naturalWidth);
 		const size = font.size * fit;
 		applyFont(probe, font, size);
 		const metrics = probe.measureText(text);
@@ -706,8 +716,9 @@ function mountWordmark(parts: WordmarkParts): HomeHeroWordmarkController {
 		dpr = Math.min(window.devicePixelRatio || 1, MAX_PIXEL_RATIO);
 		canvas.width = Math.round(width * dpr);
 		canvas.height = Math.round(height * dpr);
-		layoutDirty = true;
-		wake();
+		// 走 invalidateLayout 而不是只标脏：时间线没在跑的时候 wake() 不会排下一帧，
+		// ResizeObserver 上报的尺寸变化就没人消费，首屏测错一次就永远错下去。
+		invalidateLayout();
 	}
 
 	/** gsap 会把标题缩放/位移，rect 是视觉尺寸，要按比值换算回布局坐标系 */

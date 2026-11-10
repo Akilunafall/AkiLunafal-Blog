@@ -26,6 +26,12 @@ const INTERACTION_HOLD_START = 1.31;
 const TITLE_EXIT_TIME = 0.72;
 /** 标题淡出时向上抬的距离（px），与整图离场同向 */
 const TITLE_EXIT_LIFT = 46;
+/**
+ * 等待字体就绪的上限。identityText 在 prepareFlyText 里先被设成 autoAlpha 0，
+ * 只有字体就绪才会淡入；弱网下 fonts.ready 拖太久，首屏就只能看到一片空白标题。
+ * 超时后按 fallback 字体先放出来，字标自己在字体到达时会重建。
+ */
+const FONTS_READY_TIMEOUT = 1500;
 let initialReloadHandled = false;
 
 /**
@@ -782,7 +788,13 @@ export function mountHomeHero(): () => void {
 			}, 200);
 		};
 
-		document.fonts.ready.then(() => {
+		const fontsReady = Promise.race([
+			document.fonts.ready,
+			new Promise<void>((resolve) => {
+				window.setTimeout(resolve, FONTS_READY_TIMEOUT);
+			}),
+		]);
+		fontsReady.then(() => {
 			if (disposed) return;
 			// Promise 回调不继承同步 context，必须显式登记，包括 identity 的延迟补间。
 			animationContext.add(() => {
