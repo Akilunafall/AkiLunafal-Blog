@@ -554,6 +554,21 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("yuriko.cn"),
 					enabled: true,
 				},
+				{
+					name: "FUMO对决",
+					url: "https://caiyiwww.github.io/fumo-duel-play/",
+					description: "fumofumofumofumofumofumofumofumofumofumo",
+					icon: favicon("caiyiwww.github.io/fumo-duel-play/"),
+					enabled: true,
+				},
+				{
+					name: "秘封俱乐部",
+					url: "https://touhou-life.top/index.html",
+					description:
+						"秘封俱乐部是幻想乡外，现世一个专门探索境界的非公灵异组织。已知的社团成员中宇佐见堇子处于与幻想乡同步的时间段，而玛艾露贝莉·赫恩与宇佐见莲子处于近未来的时间段。",
+					icon: favicon("touhou-life.top/index.html"),
+					enabled: true,
+				},
 			],
 		},
 	],
