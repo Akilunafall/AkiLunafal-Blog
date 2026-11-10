@@ -1,7 +1,12 @@
 import type { CollectionsApiConfig } from "../types/config";
 
 // 使用 favicon 服务获取网站图标
-const favicon = (domain: string) => `https://favicon.im/${domain}`;
+// favicon.im 只认纯域名：传入 "example.com/some/path" 这种带路径（含查询串、锚点）的
+// 地址会直接返回 403，浏览器里就是一张破图。这里统一裁到 host 再拼接。
+const favicon = (target: string) => {
+	const host = target.replace(/^https?:\/\//, "").split("/")[0];
+	return `https://favicon.im/${host}`;
+};
 
 export const collectionsApiConfig: CollectionsApiConfig = {
 	// 页面标题，留空则使用 i18n 翻译
