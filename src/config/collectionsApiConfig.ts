@@ -491,7 +491,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 				{
 					name: "THB Wiki",
 					url: "https://thwiki.cc/%E9%A6%96%E9%A1%B5",
-					description: "东方同人市场",
+					description: "THBwiki官网",
 					icon: favicon("thwiki.cc/%E9%A6%96%E9%A1%B5"),
 					enabled: true,
 				},
