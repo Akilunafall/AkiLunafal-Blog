@@ -598,7 +598,7 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 				{
 					name: "Eagler Touhou",
 					url: "https://touhouonline.com/",
-					description: "在线车万原作游玩",
+					description: "在线车万原作游玩，支持多人",
 					icon: favicon("touhouonline.com/"),
 					enabled: true,
 				},
