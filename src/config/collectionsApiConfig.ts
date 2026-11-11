@@ -595,6 +595,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("touhou-life.top/index.html"),
 					enabled: true,
 				},
+				{
+					name: "Eagler Touhou",
+					url: "https://touhouonline.com/",
+					description: "在线车万原作游玩",
+					icon: favicon("touhouonline.com/"),
+					enabled: true,
+				},
 			],
 		},
 	],
