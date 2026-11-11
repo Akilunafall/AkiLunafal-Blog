@@ -149,6 +149,13 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("oshwhub.com/"),
 					enabled: true,
 				},
+				{
+					name: "TI MSPM0 MCU",
+					url: "https://www.nuedc-training.com.cn/index/huodong/mspm0_index#target1",
+					description: "该死的m0...",
+					icon: favicon("nuedc-training.com.cn"),
+					enabled: true,
+				},
 			],
 		},
 		{
