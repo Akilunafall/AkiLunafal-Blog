@@ -156,6 +156,20 @@ export const collectionsApiConfig: CollectionsApiConfig = {
 					icon: favicon("nuedc-training.com.cn"),
 					enabled: true,
 				},
+				{
+					name: "Robotics Lab",
+					url: "https://robotics-lab-app.vercel.app/#uno",
+					description: "一个帮助初学者认识开发板硬件结构的交互式平台",
+					icon: favicon("robotics-lab-app.vercel.app"),
+					enabled: true,
+				},
+				{
+					name: "Robotics Lab",
+					url: "https://robotips.app/zh",
+					description: "一个帮助初学者了解什么是嵌入式开发的交互式平台",
+					icon: favicon("robotips.app"),
+					enabled: true,
+				},
 			],
 		},
 		{
