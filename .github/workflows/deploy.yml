@@ -42,6 +42,9 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           local-dir: ./dist/
+          # Rebuild the sync inventory after server files were removed.
+          # The old inventory skips creating directories that no longer exist.
+          state-name: .ftp-deploy-sync-state-v2.json
           # 构建期隐藏目录（Vite 清单、预渲染中间产物）不是站点资源，
           # 服务器 FTP 拒绝在该隐藏目录下建文件会返回 553 并中断整次同步
           exclude: |
