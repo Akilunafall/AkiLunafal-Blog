@@ -42,3 +42,11 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           local-dir: ./dist/
+          # 构建期隐藏目录（Vite 清单、预渲染中间产物）不是站点资源，
+          # 服务器 FTP 拒绝在该隐藏目录下建文件会返回 553 并中断整次同步
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.vite/**
+            **/.prerender/**
